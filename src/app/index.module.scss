@@ -1,0 +1,20 @@
+@import "../shared/variables";
+
+* {
+  font-family: $font;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

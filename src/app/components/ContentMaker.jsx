@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link, HashRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 import List from '@material-ui/core/List';
 import Face from '@material-ui/icons/Face';
@@ -25,7 +26,6 @@ import "./ContentMaker.module.scss";
 class ContentMaker extends Component {
   state = {
     open: false,
-    companies: null,
     selectedCompany: null
   };
 
@@ -33,28 +33,29 @@ class ContentMaker extends Component {
     this.setState({ open: !this.state.open });
   };
 
-  componentDidMount = () => {
-    this.loadCompanies();
-  }
+  // componentDidMount = () => {
+  //   this.loadCompanies();
+  // }
 
-  loadCompanies = () => {
-    fetch(`http://0.0.0.0:3000/roles/companies_list/${this.props.userId}`)
-      .then(response => response.json()
-        .then(data => {
-          response.ok && this.setState({
-            companies: data.companies
-          })
-        }));
-  }
+  // loadCompanies = () => {
+  //   fetch(`http://0.0.0.0:3000/roles/companies_list/${this.props.userId}`)
+  //     .then(response => response.json()
+  //       .then(data => {
+  //         response.ok && this.setState({
+  //           companies: data.companies
+  //         })
+  //       }));
+  // }
 
   selectCompany = (id) => {
     this.setState({
-      selectedCompany: this.state.companies.find(c => c.id == id)
+      selectedCompany: this.props.companies.find(c => c.id == id)
     })
   }
 
   render() {
-    const { companies, open, selectedCompany } = this.state;
+    const { open, selectedCompany } = this.state;
+    const { companies } = this.props;
     return (
       <Fragment>
 
@@ -128,7 +129,9 @@ class ContentMaker extends Component {
   }
 }
 
-export default ContentMaker;
+export default connect(state => ({
+  companies: state.companies
+}), {})(ContentMaker);
 
 // Узнаем по id пользователя список команд - до этого спинер в списке команд
 // Если id = null, то отправляем на авторизацию

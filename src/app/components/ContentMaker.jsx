@@ -21,6 +21,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Content from "./Content.jsx";
 import { COMPANY, PROFILE } from "../../shared/const";
+import { loadCompanies } from "../actions/loadCompanies.js";
 import "./ContentMaker.module.scss";
 
 class ContentMaker extends Component {
@@ -33,9 +34,9 @@ class ContentMaker extends Component {
     this.setState({ open: !this.state.open });
   };
 
-  // componentDidMount = () => {
-  //   this.loadCompanies();
-  // }
+  componentDidMount = () => {
+    this.props.loadCompanies(this.props.userId, this.props.auth_token);
+  }
 
   // loadCompanies = () => {
   //   fetch(`http://0.0.0.0:3000/roles/companies_list/${this.props.userId}`)
@@ -130,8 +131,9 @@ class ContentMaker extends Component {
 }
 
 export default connect(state => ({
-  companies: state.companies
-}), {})(ContentMaker);
+  companies: state.companies,
+  auth_token: state.auth_token
+}), {loadCompanies})(ContentMaker);
 
 // Узнаем по id пользователя список команд - до этого спинер в списке команд
 // Если id = null, то отправляем на авторизацию

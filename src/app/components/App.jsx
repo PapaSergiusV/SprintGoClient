@@ -1,28 +1,25 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
-import { loadCompanies } from "../actions/loadCompanies.js";
 
 import ContentMaker from "./ContentMaker.jsx";
+import SignIn from "./auth/SignIn.jsx";
 const userId = 1;
 
 class App extends Component {
   render() {
+    const { auth_token } = this.props;
     this.props.companies && console.log(this.props.companies);
     return (
       <Fragment>
-        <ContentMaker userId={userId} />
+        {auth_token ? <ContentMaker userId={userId} /> : <SignIn />}
       </Fragment>
     );
-  }
-
-  componentDidMount = () => {
-    this.props.loadCompanies(userId);
   }
 }
 
 
 export default connect(state => ({
-  companies: state.companies
-}), {loadCompanies})(App);
+  auth_token: state.auth_token
+}), {})(App);
 
 // Сначала получаем id пользователя. Если не зарегистрирован посылаем null

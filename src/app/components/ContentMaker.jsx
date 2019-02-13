@@ -9,12 +9,14 @@ import Typography from "@material-ui/core/Typography";
 import Navbar from "./navbar/Navbar.jsx";
 import Content from "./Content.jsx";
 import ModalWindow from "../../shared/modal/ModalWindow.jsx";
+import CreateCompany from "./company/CreateCompany.jsx";
 import { loadCompanies } from "../actions/loadCompanies.js";
 import "./ContentMaker.module.scss";
 
 class ContentMaker extends Component {
   state = {
-    selectedCompany: null
+    selectedCompany: null,
+    createCompanyMode: false
   };
 
   selectCompany = (id) => {
@@ -28,7 +30,8 @@ class ContentMaker extends Component {
   }
 
   render() {
-    const { selectedCompany } = this.state;
+    const { selectedCompany, createCompanyMode } = this.state;
+    console.log("state: ", createCompanyMode)
     return (
       <Fragment>
 
@@ -44,7 +47,7 @@ class ContentMaker extends Component {
 
         <div className="content">
 
-          <Navbar selectCompany={this.selectCompany} />
+          <Navbar selectCompany={this.selectCompany} openCreateCompWindow={this.showHideCreateCompanyWindow} />
 
           <Content
             company={selectedCompany}
@@ -52,15 +55,18 @@ class ContentMaker extends Component {
 
         </div>
 
-        <ModalWindow>
-          <Fragment>
-            MODAL
-          </Fragment>
+        <ModalWindow open={createCompanyMode} close={this.showHideCreateCompanyWindow}>
+          <CreateCompany />
         </ModalWindow>
 
       </Fragment>
     );
   }
+
+  showHideCreateCompanyWindow = () => {
+    this.setState({ createCompanyMode: !this.state.createCompanyMode })
+  }
+
 }
 
 export default connect(state => ({

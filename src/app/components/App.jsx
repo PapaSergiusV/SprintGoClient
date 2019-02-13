@@ -21,5 +21,3 @@ export default connect(state => ({
   auth_token: state.user.auth_token,
   userId: state.user.id
 }), {})(App);
-
-// Сначала получаем id пользователя. Если не зарегистрирован посылаем null

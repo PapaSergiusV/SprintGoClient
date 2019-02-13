@@ -84,7 +84,7 @@ class Navbar extends Component {
                   </List>
                 </Link>
                 <List component="div">
-                  <ListItem button>
+                  <ListItem button onClick={this.props.openCreateCompWindow}>
                     <ListItemIcon>
                       <AddCircle />
                     </ListItemIcon>

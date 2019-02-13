@@ -10,6 +10,7 @@ class About extends Component {
   render() {
     const { company } = this.props;
     const workers = company ? company.workers : null;
+    console.log("about: ", company, workers)
     return (
       <div className="company-content">
         <Grid container spacing={8}>
@@ -28,7 +29,8 @@ class About extends Component {
             </Paper>
             <Paper className="paper">
               <h3><span>Registered:</span></h3>
-              <p>{company && company.created.slice(0, 10)}</p>
+              <p>{company && company.created && company.created.slice(0, 10)}</p>
+              <p>{company && company.created_at && company.created_at.slice(0, 10)}</p>
             </Paper>
           </Grid>
           <Grid item xs={12} sm={4}>

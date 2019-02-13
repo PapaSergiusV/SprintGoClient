@@ -1,3 +1,30 @@
-.content {
-  background: white;
+.create-company-modal {
+  box-sizing: border-box;
+  height: 70vh;
+  width: 33%;
+  min-height: 300px;
+  min-width: 200px;
+  padding: 15px;
+
+  input, textarea {
+    width: 98%;
+  }
+
+  h3 {
+    text-transform: uppercase;
+  }
+
+  p {
+    margin-bottom: 0;
+
+    span {
+      color: gray;
+    }
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+  }
 }

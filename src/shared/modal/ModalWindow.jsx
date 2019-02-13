@@ -19,14 +19,12 @@ class ModalWindow extends Component {
   render() {
     return (
       <div ref={this.wrapper} className="wrapper" onClick={this.handleWrapperClick}>
-        <div className="modal">
-          {
-            React.Children.map(
-              this.props.children,
-              child => React.cloneElement(child, { close: this.hideModal })
-            )
-          }
-        </div>
+        {
+          React.Children.map(
+            this.props.children,
+            child => React.cloneElement(child, { close: this.hideModal })
+          )
+        }
       </div>
     );
   }

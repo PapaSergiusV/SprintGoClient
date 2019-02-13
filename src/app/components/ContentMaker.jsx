@@ -31,7 +31,7 @@ class ContentMaker extends Component {
 
   render() {
     const { selectedCompany, createCompanyMode } = this.state;
-    console.log("state: ", createCompanyMode)
+    console.log("CM: ", this.props.companies)
     return (
       <Fragment>
 
@@ -56,7 +56,7 @@ class ContentMaker extends Component {
         </div>
 
         <ModalWindow open={createCompanyMode} close={this.showHideCreateCompanyWindow}>
-          <CreateCompany />
+          <CreateCompany showHide={this.showHideCreateCompanyWindow} />
         </ModalWindow>
 
       </Fragment>

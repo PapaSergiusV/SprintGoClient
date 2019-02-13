@@ -31,7 +31,6 @@ class ContentMaker extends Component {
 
   render() {
     const { selectedCompany, createCompanyMode } = this.state;
-    console.log("CM: ", this.props.companies)
     return (
       <Fragment>
 

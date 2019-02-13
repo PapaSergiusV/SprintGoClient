@@ -43,9 +43,7 @@ class Navbar extends Component {
       <Fragment>
         <HashRouter>
           <nav>
-            <List
-              subheader={<ListSubheader component="div">MENU</ListSubheader>}
-            >
+            <List>
               <Link to={PROFILE}>
                 <ListItem button>
                   <ListItemIcon>

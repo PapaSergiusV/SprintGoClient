@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -7,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import About from "./AboutCompany.jsx";
 import EditCompany from "./EditCompany.jsx";
 import Projects from "./Projects.jsx";
+import { removeCompany } from "../../actions/removeCompany.js";
 import "./Company.module.scss";
 
 const ABOUT = "About";
@@ -78,8 +80,17 @@ class Company extends Component {
       case PROJECTS: return <Projects company={company} />;
       case ABOUT: return <About company={company} />;
       case EDIT: return <EditCompany company={company} />;
-      case DELETE: return <About company={company} />;
+      case DELETE: 
+        this.removeCompany();
+        this.setPage(ABOUT);
+        break;
     }
+  }
+
+  removeCompany = () => {
+    const { company } = this.props;
+    if (confirm(`Are you sure you want to remove your company ${company.name}?`))
+      this.props.removeCompany(company.id, this.props.authToken);
   }
 
   setPage = (page) => {
@@ -89,4 +100,6 @@ class Company extends Component {
   }
 }
 
-export default Company;
+export default connect(state => ({
+  authToken: state.user.auth_token
+}), {removeCompany})(Company);

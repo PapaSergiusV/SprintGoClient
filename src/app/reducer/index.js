@@ -5,5 +5,5 @@ import auth from "./auth.js";
 
 export default combineReducers({
   companies: companiesReducer,
-  auth_token: auth
+  user: auth
 });

@@ -1,7 +1,7 @@
-export default (auth_token = "", action) => {
+export default (user = {}, action) => {
   const { type } = action;
   switch (type) {
-    case 'SIGN_IN': return auth_token = action.data.auth_token;
+    case 'SIGN_IN': return user = action.data;
   }
-  return auth_token;
+  return user;
 }

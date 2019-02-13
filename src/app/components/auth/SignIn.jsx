@@ -68,5 +68,5 @@ class SignIn extends Component {
 }
 
 export default connect(state => ({
-  auth_token: state.auth_token
+  auth_token: state.user.auth_token
 }), {signIn})(SignIn);

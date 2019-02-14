@@ -89,8 +89,10 @@ class Company extends Component {
 
   removeCompany = () => {
     const { company } = this.props;
-    if (confirm(`Are you sure you want to remove your company ${company.name}?`))
+    if (confirm(`Are you sure you want to remove your company ${company.name}?`)) {
       this.props.removeCompany(company.id, this.props.authToken);
+      this.props.eraseCompany();
+    }
   }
 
   setPage = (page) => {

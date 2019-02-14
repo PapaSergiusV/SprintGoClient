@@ -15,7 +15,7 @@ class Content extends Component {
         <div className="content-wrapper">
           <Route exact path={PROFILE} component={Profile} />
           <Route path={COMPANY} render={() => 
-            <Company company={company} />
+            <Company company={company} eraseCompany={this.props.eraseCompany} />
           } />
         </div>
       </HashRouter>

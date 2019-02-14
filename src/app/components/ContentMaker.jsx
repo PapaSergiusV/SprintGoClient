@@ -19,10 +19,18 @@ class ContentMaker extends Component {
     createCompanyMode: false
   };
 
-  selectCompany = (id) => {
-    this.setState({
-      selectedCompany: this.props.companies.find(c => c.id == id)
-    })
+  selectCompany = (id = null) => {
+    const { companies } = this.props;
+    console.log(id);
+    if ("id: ", id)
+      this.setState({ selectedCompany: companies.find(c => c.id == id) });
+    else {
+      console.log("change selected after removing")
+      if (companies)
+        this.setState({ selectedCompany: companies[0] });
+      else
+        this.setState({ selectedCompany: null });
+    }
   }
 
   componentDidMount = () => {
@@ -50,6 +58,7 @@ class ContentMaker extends Component {
 
           <Content
             company={selectedCompany}
+            eraseCompany={this.selectCompany}
           />
 
         </div>

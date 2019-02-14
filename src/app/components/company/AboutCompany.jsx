@@ -10,7 +10,6 @@ class About extends Component {
   render() {
     const { company } = this.props;
     const workers = company ? company.workers : null;
-    console.log("about: ", company, workers)
     return (
       <div className="company-content">
         <Grid container spacing={8}>

@@ -16,7 +16,8 @@ import "./ContentMaker.module.scss";
 class ContentMaker extends Component {
   state = {
     selectedCompany: null,
-    createCompanyMode: false
+    createCompanyMode: false,
+    openNav: false
   };
 
   selectCompany = (id = null) => {
@@ -42,7 +43,7 @@ class ContentMaker extends Component {
       <Fragment>
 
         <div className="top">
-          <IconButton color="inherit" aria-label="Menu">
+          <IconButton color="inherit" aria-label="Menu" onClick={this.toggleNav}>
             <MenuIcon />
           </IconButton>
           <Typography variant="title" color="inherit">
@@ -52,14 +53,15 @@ class ContentMaker extends Component {
         </div>
 
         <div className="content">
-
-          <Navbar selectCompany={this.selectCompany} openCreateCompWindow={this.showHideCreateCompanyWindow} />
-
+          <Navbar
+            selectCompany={this.selectCompany}
+            openCreateCompWindow={this.showHideCreateCompanyWindow}
+            open={this.state.openNav}
+          />
           <Content
             company={selectedCompany}
             eraseCompany={this.selectCompany}
           />
-
         </div>
 
         <ModalWindow open={createCompanyMode} close={this.showHideCreateCompanyWindow}>
@@ -72,6 +74,10 @@ class ContentMaker extends Component {
 
   showHideCreateCompanyWindow = () => {
     this.setState({ createCompanyMode: !this.state.createCompanyMode })
+  }
+
+  toggleNav = () => {
+    this.setState({ openNav: !this.state.openNav });
   }
 
 }

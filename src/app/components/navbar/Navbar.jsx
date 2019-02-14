@@ -13,23 +13,56 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { showWindow, hideWindow } from "../../../libs/ModalAnimation.js";
 import { COMPANY, PROFILE } from "../../../shared/const.js";
 import { loadCompanies } from "../../actions/loadCompanies.js";
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.wrapper = React.createRef();
+  }
+
   state = {
-    open: false
+    openCompanyMenu: false
   };
 
   handleClick = () => {
-    this.setState({ open: !this.state.open });
+    this.setState({ openCompanyMenu: !this.state.openCompanyMenu });
   };
 
   componentDidMount = () => {
     this.props.loadCompanies(this.props.userId, this.props.auth_token);
+    this.wrapper.current.style.display = "none";
+  }
+
+  componentDidUpdate = (prevProps) => {
+    const { open } = this.props;
+    !prevProps.open && open && this.toggleMenu();
+    prevProps.open && !open && this.toggleMenu(false);
+  }
+
+  toggleMenu = (toOpen = true, ms = 150) => {
+    let position = toOpen ? -250 : 0;
+    const goal = toOpen ? 0 : -250;
+    const cycles = 10;
+    const step = -250 * (toOpen ? -1 : 1) / (ms / cycles);
+
+    let elem = this.wrapper.current;
+    elem.style.left = `${position}px`;
+    elem.style.display = "block";
+    let interval = setInterval(function () {
+      position += step;
+      if (Math.abs(Math.abs(position) - Math.abs(goal)) < 5) {
+        elem.style.left = `${goal}px`;
+        toOpen || (elem.style.display = "none");
+        clearInterval(interval);
+      } 
+      else
+        elem.style.left = `${position}px`;
+    }, ms / cycles);
   }
 
   selectCompany = (id) => {
@@ -37,12 +70,12 @@ class Navbar extends Component {
   }
 
   render() {
-    const { open } = this.state;
+    const { openCompanyMenu } = this.state;
     const { companies } = this.props;
     return (
       <Fragment>
         <HashRouter>
-          <nav>
+          <nav ref={this.wrapper}>
             <List>
               <Link to={PROFILE}>
                 <ListItem button>
@@ -58,10 +91,10 @@ class Navbar extends Component {
                   <Stars />
                 </ListItemIcon>
                 <ListItemText inset primary="Companies" />
-                {open ? <ExpandLess /> : <ExpandMore />}
+                {openCompanyMenu ? <ExpandLess /> : <ExpandMore />}
               </ListItem>
 
-              <Collapse in={open} timeout="auto" unmountOnExit>
+              <Collapse in={openCompanyMenu} timeout="auto" unmountOnExit>
                 <Link to={COMPANY}>
                   <List component="div">
                     {

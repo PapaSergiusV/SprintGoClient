@@ -14,6 +14,9 @@ export const addCompany = (userId, auth_token, company) => dispatch => {
   })
     .then(response => response.json()
       .then(data => {
-        response.ok && dispatch({ type: 'ADD_C', data: data });
+        if (response.ok)
+          dispatch({ type: 'ADD_C', data: data });
+        else
+          alert(JSON.stringify(data));
       }));
 };

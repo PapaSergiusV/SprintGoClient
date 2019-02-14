@@ -6,6 +6,9 @@ export const loadCompanies = (userId, auth_token) => dispatch => {
   })
     .then(response => response.json()
       .then(data => {
-        response.ok && dispatch({ type: 'GET_CS', data: data });
+        if (response.ok)
+          dispatch({ type: 'GET_CS', data: data });
+        else
+          alert(JSON.stringify(data));
       }));
 };

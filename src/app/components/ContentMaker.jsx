@@ -21,12 +21,10 @@ class ContentMaker extends Component {
 
   selectCompany = (id = null) => {
     const { companies } = this.props;
-    console.log(id);
     if ("id: ", id)
       this.setState({ selectedCompany: companies.find(c => c.id == id) });
     else {
-      console.log("change selected after removing")
-      if (companies)
+      if (companies.length > 1)
         this.setState({ selectedCompany: companies[0] });
       else
         this.setState({ selectedCompany: null });

@@ -11,6 +11,9 @@ export const signIn = (email, password) => dispatch => {
   })
     .then(response => response.json()
       .then(data => {
-        response.ok && dispatch({ type: 'SIGN_IN', data: data });
+        if (response.ok)
+          dispatch({ type: 'SIGN_IN', data: data });
+        else
+          alert(JSON.stringify(data));
       }));
 };

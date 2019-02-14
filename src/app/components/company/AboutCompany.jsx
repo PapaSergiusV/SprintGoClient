@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 class About extends Component {
   render() {
@@ -49,7 +48,7 @@ class About extends Component {
                     </div>
                   )
                   :
-                  <div className="loading"><CircularProgress onClick={this.loadWorkers} /></div>
+                  <div className="loading"><p>There are no employees yet</p></div>
               }
             </Paper>
           </Grid>

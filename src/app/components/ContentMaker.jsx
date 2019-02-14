@@ -32,6 +32,7 @@ class ContentMaker extends Component {
   }
 
   componentDidMount = () => {
+    console.log("Enter: ", this.props.userId, this.props.auth_token)
     this.props.loadCompanies(this.props.userId, this.props.auth_token);
   }
 

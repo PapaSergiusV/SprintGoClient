@@ -86,7 +86,7 @@ class Company extends Component {
     switch (this.state.page) {
       case PROJECTS: return <Projects company={company} />;
       case ABOUT: return <About company={company} />;
-      case EDIT: return <EditCompany company={company} />;
+      case EDIT: return <EditCompany company={company} redirectTo={this.setPage} redirectVal={ABOUT} />;
       case DELETE: 
         this.removeCompany();
         this.setPage(ABOUT);

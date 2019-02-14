@@ -23,6 +23,7 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.wrapper = React.createRef();
+    this.blackout = React.createRef();
   }
 
   state = {
@@ -36,6 +37,7 @@ class Navbar extends Component {
   componentDidMount = () => {
     this.props.loadCompanies(this.props.userId, this.props.auth_token);
     this.wrapper.current.style.display = "none";
+    this.blackout.current.style.display = "none";
   }
 
   componentDidUpdate = (prevProps) => {
@@ -53,6 +55,12 @@ class Navbar extends Component {
     let elem = this.wrapper.current;
     elem.style.left = `${position}px`;
     elem.style.display = "block";
+
+    if (toOpen)
+      showWindow(this.blackout.current);
+    else
+      hideWindow(this.blackout.current);
+
     let interval = setInterval(function () {
       position += step;
       if (Math.abs(Math.abs(position) - Math.abs(goal)) < 5) {
@@ -67,18 +75,19 @@ class Navbar extends Component {
 
   selectCompany = (id) => {
     this.props.selectCompany(id);
+    this.props.close();
   }
 
   render() {
     const { openCompanyMenu } = this.state;
-    const { companies } = this.props;
+    const { companies, close } = this.props;
     return (
       <Fragment>
         <HashRouter>
           <nav ref={this.wrapper}>
             <List>
               <Link to={PROFILE}>
-                <ListItem button>
+                <ListItem button onClick={close}>
                   <ListItemIcon>
                     <Face />
                   </ListItemIcon>
@@ -127,6 +136,7 @@ class Navbar extends Component {
             </List>
           </nav>
         </HashRouter>
+        <div className="blackout" ref={this.blackout} onClick={close}></div>
       </Fragment>
     );
   }

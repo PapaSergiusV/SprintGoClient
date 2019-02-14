@@ -57,6 +57,7 @@ class ContentMaker extends Component {
             selectCompany={this.selectCompany}
             openCreateCompWindow={this.showHideCreateCompanyWindow}
             open={this.state.openNav}
+            close={this.toggleNav}
           />
           <Content
             company={selectedCompany}

@@ -6,8 +6,7 @@ import SignIn from "./auth/SignIn.jsx";
 
 class App extends Component {
   render() {
-    const { auth_token, userId } = this.props;
-    this.props.companies && console.log(this.props.companies);
+    const { auth_token } = this.props;
     return (
       <Fragment>
         {auth_token ? <ContentMaker /> : <SignIn />}
@@ -18,6 +17,5 @@ class App extends Component {
 
 
 export default connect(state => ({
-  auth_token: state.user.auth_token,
-  userId: state.user.id
+  auth_token: state.user.auth_token
 }), {})(App);

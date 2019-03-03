@@ -1,6 +1,8 @@
+import { url } from "../../fixtures/fixtures.js";
+
 export const signIn = (email, password) => dispatch => {
   console.log(window.localStorage.length)
-  fetch(`http://0.0.0.0:3000/authenticate`, {
+  fetch(`${url}authenticate`, {
     method: "POST",
     body: JSON.stringify({
       email,

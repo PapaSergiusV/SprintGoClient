@@ -1,5 +1,7 @@
+import { url } from "../../fixtures/fixtures.js";
+
 export const loadCompanies = (userId, auth_token) => dispatch => {
-  fetch(`http://0.0.0.0:3000/roles/companies_list/${userId}`, {
+  fetch(`${url}roles/companies_list/${userId}`, {
     headers: {
       "Authorization": auth_token
     }

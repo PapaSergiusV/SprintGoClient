@@ -1,3 +1,5 @@
+import { url } from "../../fixtures/fixtures.js";
+
 export const addCompany = (userId, auth_token, company) => dispatch => {
   let formData = new FormData();
   formData.append("user_id", "" + userId);
@@ -5,7 +7,7 @@ export const addCompany = (userId, auth_token, company) => dispatch => {
   formData.append("company[about]", company.about);
   formData.append("company[address]", company.address);
   formData.append("company[phone]", company.phone);
-  fetch(`http://0.0.0.0:3000/companies`, {
+  fetch(`${url}companies`, {
     method: "POST",
     body: formData,
     headers: {

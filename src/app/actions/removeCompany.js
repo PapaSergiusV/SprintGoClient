@@ -1,5 +1,7 @@
+import { url } from "../../fixtures/fixtures.js";
+
 export const removeCompany = (id, auth_token) => dispatch => {
-  fetch(`http://0.0.0.0:3000/companies/${id}`, {
+  fetch(`${url}${id}`, {
     method: "DELETE",
     headers: {
       "Authorization": auth_token

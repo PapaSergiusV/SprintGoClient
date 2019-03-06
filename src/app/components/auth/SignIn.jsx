@@ -41,7 +41,7 @@ class SignIn extends Component {
         <p>password</p>
         <input type="password" onChange={this.handlePass} value={password} ref={this.passInp} />
         <p>
-          <Button onClick={this.submitData}>
+          <Button onClick={this.submitData} color="primary">
             Sign In
           </Button>
         </p>

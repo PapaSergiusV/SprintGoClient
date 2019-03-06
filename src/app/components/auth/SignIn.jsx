@@ -20,6 +20,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { signIn } from "../../actions/signIn.js";
 
+import "./signin.scss";
+
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -35,16 +37,39 @@ class SignIn extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
-        <p>e-mail</p>
-        <input type="email" onChange={this.handleEmail} value={email} ref={this.emailInp} />
-        <p>password</p>
-        <input type="password" onChange={this.handlePass} value={password} ref={this.passInp} />
-        <p>
-          <Button onClick={this.submitData} color="primary">
-            Sign In
-          </Button>
-        </p>
+      <div className="limiter">
+        <div className="container">
+          <div className="wrap">
+            <div className="login">
+
+              <span className="title">
+                Signin
+              </span>
+
+              <div className="wrap-input">
+                <input className="input" type="email" placeholder="e-mail" onChange={this.handleEmail} value={email} ref={this.emailInp} />
+                <span className="focus-input"></span>
+              </div>
+
+              <div className="wrap-input">
+                <input className="input" type="password" placeholder="password" onChange={this.handlePass} value={password} ref={this.passInp} />
+                <span className="focus-input"></span>
+              </div>
+
+              <div className="wrap-btn">
+                <button onClick={this.submitData}>
+                  Sign In
+                </button>
+              </div>
+
+              <div className="sprintgo">
+                <span className="txt1">
+                  SprintGO
+				      	</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -69,4 +94,4 @@ class SignIn extends Component {
 
 export default connect(state => ({
   auth_token: state.user.auth_token
-}), {signIn})(SignIn);
+}), { signIn })(SignIn);

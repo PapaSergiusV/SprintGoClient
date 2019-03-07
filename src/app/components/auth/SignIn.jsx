@@ -38,7 +38,7 @@ class SignIn extends Component {
     const { email, password } = this.state;
     return (
       <div className="limiter">
-        <div className="container">
+        <div className="login-container">
           <div className="wrap">
             <div className="login">
 
@@ -94,4 +94,4 @@ class SignIn extends Component {
 
 export default connect(state => ({
   auth_token: state.user.auth_token
-}), { signIn })(SignIn);
+}), {signIn})(SignIn);

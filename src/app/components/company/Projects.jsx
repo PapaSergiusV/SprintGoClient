@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 import { loadProjects } from "../../actions/loadProjects.js";
 import { addProject } from "../../actions/addProject.js";
 import { handleText } from "../../../libs/handleText.js";
@@ -9,22 +11,29 @@ class Projects extends Component {
   render() {
     const { projects } = this.props;
     return (
-      <div>
+      <div className="project-content">
         {
+          <Grid container spacing={8}>
+            <Grid item xs={12} sm={8}>
+              {
+                projects[0] ?
+                  projects.map((project, key) =>
+                    <div key={key}>
+                      <Paper className="paper">
+                        <h3>{project.name}</h3>
+                        <p>{project.about}</p>
+                      </Paper>
+                    </div>
+                  )
+                  :
+                  <p>There is no projects yet</p>
+              }
+            </Grid>
+          </Grid>
           /* TO DO: Оформить список проектов компании. В каждом пункте должно быть имя компании, о ней, кнопка просмотр
           (пока не рабочая) и кнопка удаления (пока не рабочая)*/
         }
-        {
-          projects[0] ?
-            projects.map((project, key) =>
-              <div key={key}>
-                <h3>{project.name}</h3>
-                <p>{project.about}</p>
-              </div>
-            )
-            :
-            <p>There is no projects yet</p>
-        }
+
         {
           /* TO DO: Форма создания нового проекта */
         }

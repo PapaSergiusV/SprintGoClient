@@ -1,0 +1,87 @@
+﻿@import "../../../shared/variables";
+
+.paper {
+  padding: 10px 20px;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .button {
+      height: 40px;
+      margin-left: 10px;
+    }
+
+    .contained span {
+      color: white;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+
+      .round-button {
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
+        
+        svg {
+          color: white;
+        }
+      }
+    }
+  }
+
+  span {
+    color: $deep-gray;
+  }
+
+  .chip {
+    margin-bottom: 2px;
+  }
+}
+
+.profile-content {
+  width: 100%;
+  padding: 4px;
+
+  p {
+    margin-bottom: 0;
+    text-align: justify;
+  }
+
+  input, textarea {
+    width: 100%;
+  }
+
+  .button span {
+    color: white;
+  }
+
+  .MuiInputBase-input-277 {
+    font: inherit;
+    color: black;
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 6px 0 7px;
+    display: block;
+    min-width: 0;
+    box-sizing: content-box;
+    background: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+  .MuiInputBase-input-277.MuiInputBase-disabled-270 {
+    opacity: 1;
+}
+.MuiOutlinedInput-input-262 {
+    padding: 18.5px 14px;
+}
+.MuiInputBase-root-267.MuiInputBase-disabled-270 {
+    color: rgba(0, 0, 0, 0.38);
+    cursor: default;
+}
+
+}

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import TextField from '@material-ui/core/TextField';
 
 import { editCompany } from "../../actions/editCompany.js";
 import { handleText } from "../../../libs/handleText.js";
@@ -26,14 +27,10 @@ class EditCompany extends Component {
           <Grid item xs={12} sm={6}>
             <Paper className="paper">
               <h3><span>Edit company</span></h3>
-              <p>Name:</p>
-              <input type="text" defaultValue={company.name} ref={this.name}/>
-              <p>About:</p>
-              <textarea rows="10" defaultValue={company.about} ref={this.about}/>
-              <p>Address:</p>
-              <input type="text" defaultValue={company.address} ref={this.address}/>
-              <p>Contacts:</p>
-              <input type="text" defaultValue={company.phone} ref={this.phone}/>
+              <p><TextField required id="standard-name" label="Name" margin="normal" defaultValue={company.name} ref={this.name}/></p>
+              <p><TextField id="standard-required" label="About" margin="normal" fullWidth defaultValue={company.about} ref={this.about}/></p>
+              <p><TextField id="standard-required" label="Adress" margin="normal" fullWidth defaultValue={company.address} ref={this.address}/></p>
+              <p><TextField id="standard-required" label="Contacts" margin="normal" fullWidth defaultValue={company.phone} ref={this.phone}/></p>
               <p>
                 <Button variant="contained" color="primary" className="button" onClick={this.handleForm}>
                   Apply changes

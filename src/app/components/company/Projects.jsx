@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { Link, HashRouter } from "react-router-dom";
 
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -7,7 +8,9 @@ import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import { loadProjects } from "../../actions/loadProjects.js";
 import { addProject } from "../../actions/addProject.js";
+import { chooseSprint } from "../../actions/chooseSprint.js";
 import { handleText } from "../../../libs/handleText.js";
+import { SPRINT } from "../../../shared/const.js";
 
 class Projects extends Component {
   render() {
@@ -16,38 +19,44 @@ class Projects extends Component {
       <div className="company-content">
         <Grid container spacing={8}>
           <Grid item xs={12} sm={6}>
-            {
-              projects[0] ?
-                projects.map((project, key) =>
-                  <div key={key}>
-                    <Paper className="paper">
-                      <h3>{project.name}</h3>
-                      <p>{project.about}</p>
-                      <Button variant="contained" color="primary" className="button">
-                        Edit
+            <HashRouter>
+              <Fragment>
+                {
+                  projects[0] ?
+                    projects.map((project, key) =>
+                      <div key={key}>
+                        <Paper className="paper">
+                          <h3>{project.name}</h3>
+                          <p>{project.about}</p>
+                          <Button variant="contained" color="primary" className="button">
+                            Edit
                         </Button>
-                      <Button variant="contained" color="primary" className="button">
-                        Show
+                          <Link to={SPRINT}>
+                            <Button variant="contained" color="primary" className="button"
+                              onClick={this.selectSprint.bind(this, project)}>
+                              Show
                         </Button>
-                    </Paper>
-                  </div>
-                )
-                :
-                <p>There is no projects yet</p>
-            }
-
+                          </Link>
+                        </Paper>
+                      </div>
+                    )
+                    :
+                    <p>There is no projects yet</p>
+                }
+              </Fragment>
+            </HashRouter>
           </Grid>
           <Grid item xs={12} sm={6}>
             <Paper className="paper">
               <h3>
                 Create new project
               </h3>
-              <p>
+              <div>
                 <TextField required id="standard-name" label="Name" margin="normal" />
-              </p>
-              <p>
+              </div>
+              <div>
                 <TextField id="standard-required" label="About" margin="normal" fullWidth />
-              </p>
+              </div>
               <Button variant="contained" color="primary" className="button">
                 Create
                 </Button>
@@ -61,6 +70,8 @@ class Projects extends Component {
   componentDidMount = () => {
     this.props.loadProjects(this.props.company.id, this.props.authToken)
   }
+
+  selectSprint = (project) => this.props.chooseSprint(project);
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -77,4 +88,4 @@ class Projects extends Component {
 export default connect(state => ({
   authToken: state.user.auth_token,
   projects: state.projects
-}), { loadProjects, addProject })(Projects);
+}), { loadProjects, addProject, chooseSprint })(Projects);

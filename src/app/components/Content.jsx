@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 
 import Company from "./company/Company.jsx";
 import Profile from "./profile/Profile.jsx";
-import { COMPANY, PROFILE } from "../../shared/const";
+import SprintTable from "./sprint/SprintTable.jsx";
+import { COMPANY, PROFILE, SPRINT } from "../../shared/const";
 
 class Content extends Component {
   render() {
@@ -17,6 +18,7 @@ class Content extends Component {
           <Route path={COMPANY} render={() => 
             <Company company={company} eraseCompany={this.props.eraseCompany} />
           } />
+          { this.props.sprint.id ? <Route path={SPRINT} component={SprintTable} /> : <Route path={SPRINT} component={Profile} /> }
         </div>
       </HashRouter>
     );
@@ -24,5 +26,6 @@ class Content extends Component {
 }
 
 export default connect(state => ({
-  companies: state.companies
+  companies: state.companies,
+  sprint: state.sprint
 }), {})(Content);

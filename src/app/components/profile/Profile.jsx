@@ -21,9 +21,9 @@ class Profile extends Component {
                   <img src="http://placehold.it/300x450" alt="avatar" />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <p><TextField disabled id="outlined-disabled" variant="outlined" label="First Name" margin="normal" defaultValue={first_name} className="TextField" /></p>
-                  <p><TextField disabled id="outlined-disabled" variant="outlined" label="Last Name" margin="normal" defaultValue={last_name} /></p>
-                  <p><TextField disabled id="outlined-disabled" variant="outlined" label="Email" margin="normal" defaultValue={email} /></p>
+                  <div><TextField disabled id="outlined-disabled" variant="outlined" label="First Name" margin="normal" defaultValue={first_name} className="TextField" /></div>
+                  <div><TextField disabled id="outlined-disabled" variant="outlined" label="Last Name" margin="normal" defaultValue={last_name} /></div>
+                  <div><TextField disabled id="outlined-disabled" variant="outlined" label="Email" margin="normal" defaultValue={email} /></div>
                   <Button variant="contained" color="primary" className="button">
                     Edit
                     </Button>
@@ -45,7 +45,7 @@ class Profile extends Component {
                       </div>) :
                     <p>You haven't got any roles yet</p>
                 }
-                <p><h3>About:</h3> <p>{about}</p></p>
+                <div><h3>About:</h3><p>{about}</p></div>
               </Paper>
 
             </div>

@@ -8,9 +8,9 @@ import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import { loadProjects } from "../../actions/loadProjects.js";
 import { addProject } from "../../actions/addProject.js";
-import { chooseSprint } from "../../actions/chooseSprint.js";
+import { chooseProject } from "../../actions/chooseProject.js";
 import { handleText } from "../../../libs/handleText.js";
-import { SPRINT } from "../../../shared/const.js";
+import { SPRINTS } from "../../../shared/const.js";
 
 class Projects extends Component {
   render() {
@@ -31,9 +31,9 @@ class Projects extends Component {
                           <Button variant="contained" color="primary" className="button">
                             Edit
                         </Button>
-                          <Link to={SPRINT}>
+                          <Link to={SPRINTS}>
                             <Button variant="contained" color="primary" className="button"
-                              onClick={this.selectSprint.bind(this, project)}>
+                              onClick={this.selectProject.bind(this, project)}>
                               Show
                         </Button>
                           </Link>
@@ -71,7 +71,7 @@ class Projects extends Component {
     this.props.loadProjects(this.props.company.id, this.props.authToken)
   }
 
-  selectSprint = (project) => this.props.chooseSprint(project);
+  selectProject = (project) => this.props.chooseProject(project);
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -88,4 +88,4 @@ class Projects extends Component {
 export default connect(state => ({
   authToken: state.user.auth_token,
   projects: state.projects
-}), { loadProjects, addProject, chooseSprint })(Projects);
+}), { loadProjects, addProject, chooseProject })(Projects);

@@ -18,6 +18,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { showWindow, hideWindow } from "../../../libs/ModalAnimation.js";
 import { COMPANY, PROFILE } from "../../../shared/const.js";
 import { loadCompanies } from "../../actions/loadCompanies.js";
+import { chooseCompany } from "../../actions/chooseCompany";
 
 class Navbar extends Component {
   constructor(props) {
@@ -73,8 +74,9 @@ class Navbar extends Component {
     }, ms / cycles);
   }
 
-  selectCompany = (id) => {
-    this.props.selectCompany(id);
+  selectCompany = (company) => {
+    this.props.selectCompany(company.id);
+    this.props.chooseCompany(company);
     this.props.close();
   }
 
@@ -109,7 +111,7 @@ class Navbar extends Component {
                     {
                       companies ?
                         companies.map(company =>
-                          <ListItem button key={company.id} onClick={this.selectCompany.bind(this, company.id)}>
+                          <ListItem button key={company.id} onClick={this.selectCompany.bind(this, company)}>
                             <ListItemIcon>
                               <StarRate />
                             </ListItemIcon>
@@ -145,4 +147,4 @@ class Navbar extends Component {
 export default connect(state => ({
   companies: state.companies,
   auth_token: state.user.auth_token
-}), { loadCompanies })(Navbar);
+}), { loadCompanies, chooseCompany })(Navbar);

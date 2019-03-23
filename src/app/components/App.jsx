@@ -17,5 +17,5 @@ class App extends Component {
 
 
 export default connect(state => ({
-  auth_token: state.user.auth_token
+  auth_token: (state.user ? state.user.auth_token : "")
 }), {})(App);

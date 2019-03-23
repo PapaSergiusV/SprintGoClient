@@ -5,6 +5,7 @@ import auth from "./auth.js";
 import projects from "./projects.js";
 import actProject from "./actProject.js";
 import actCompany from "./actCompany.js";
+import actSprint from "./actSprint.js";
 import sprints from "./sprints.js";
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
   projects,
   actProject,
   actCompany,
+  actSprint,
   sprints
 });

@@ -10,8 +10,8 @@ export const loadSprints = (companyId, projectId, auth_token) => dispatch => {
     .then(response => response.json()
       .then(data => {
         if (response.ok)
-            dispatch({ type: 'GET_SPRINTS', data: data });
+          dispatch({ type: 'GET_SPRINTS', data: data });
         else
-          alert(JSON.stringify(data));
+          handleError(response, data, dispatch);
       }));
 };

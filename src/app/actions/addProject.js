@@ -17,6 +17,6 @@ export const addProject = (companyId, project, auth_token) => dispatch => {
         if (response.ok)
           dispatch({ type: 'ADD_PROJECT', data: data });
         else
-          alert(JSON.stringify(data));
+          handleError(response, data, dispatch);
       }));
 };

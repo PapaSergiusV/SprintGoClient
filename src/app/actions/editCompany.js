@@ -18,7 +18,7 @@ export const editCompany = (id, auth_token, company) => dispatch => {
         if (response.ok)
           dispatch({ type: 'EDIT_C', data: data });
         else
-          alert(JSON.stringify(data));
+          handleError(response, data, dispatch);
       }));
 };
 

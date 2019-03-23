@@ -9,8 +9,8 @@ export const loadProjects = (companyId, auth_token) => dispatch => {
     .then(response => response.json()
       .then(data => {
         if (response.ok)
-            dispatch({ type: 'GET_PS', data: data });
+          dispatch({ type: 'GET_PS', data: data });
         else
-          alert(JSON.stringify(data));
+          handleError(response, data, dispatch);
       }));
 };

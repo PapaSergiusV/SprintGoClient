@@ -19,6 +19,6 @@ export const addCompany = (userId, auth_token, company) => dispatch => {
         if (response.ok)
           dispatch({ type: 'ADD_C', data: data });
         else
-          alert(JSON.stringify(data));
+          handleError(response, data, dispatch);
       }));
 };

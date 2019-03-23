@@ -11,6 +11,7 @@ import Content from "./Content.jsx";
 import ModalWindow from "../../shared/modal/ModalWindow.jsx";
 import CreateCompany from "./company/CreateCompany.jsx";
 import { loadCompanies } from "../actions/loadCompanies.js";
+import { logOut } from "../actions/logOut.js";
 import "./ContentMaker.module.scss";
 
 class ContentMaker extends Component {
@@ -49,7 +50,7 @@ class ContentMaker extends Component {
           <Typography variant="title" color="inherit">
             SprintGO
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" onClick={this.props.logOut}>LogOut</Button>
         </div>
 
         <div className="content">
@@ -87,4 +88,4 @@ export default connect(state => ({
   companies: state.companies,
   auth_token: state.user.auth_token,
   userId: state.user.id
-}), { loadCompanies })(ContentMaker);
+}), { loadCompanies, logOut })(ContentMaker);

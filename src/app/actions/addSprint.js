@@ -13,6 +13,6 @@ export const addSprint = (data, companyId, projectId, auth_token) => dispatch =>
         if (response.ok)
           dispatch({ type: 'ADD_SPRINT', data: data });
         else
-          alert(JSON.stringify(data));
+          handleError(response, data, dispatch);
       }));
 };

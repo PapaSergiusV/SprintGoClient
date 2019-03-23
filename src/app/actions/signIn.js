@@ -1,7 +1,6 @@
 import { url } from "../../fixtures/fixtures.js";
 
 export const signIn = (email, password) => dispatch => {
-  console.log(window.localStorage.length)
   fetch(`${url}authenticate`, {
     method: "POST",
     body: JSON.stringify({

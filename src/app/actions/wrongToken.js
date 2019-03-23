@@ -1,16 +1,16 @@
 import { url } from "../../fixtures/fixtures.js";
+import { handleError } from "./handleError.js";
 
-export const removeCompany = (id, auth_token) => dispatch => {
-  fetch(`${url}${id}`, {
-    method: "DELETE",
+export const wrongToken = () => dispatch => {
+  fetch(`${url}companies`, {
     headers: {
-      "Authorization": auth_token
+      "Authorization": "wrong-token"
     }
   })
     .then(response => response.json()
       .then(data => {
         if (response.ok)
-          dispatch({ type: 'DEL_C', data, id });
+          dispatch({ type: 'WRONG', data: data });
         else
           handleError(response, data, dispatch);
       }));

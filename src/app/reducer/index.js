@@ -7,6 +7,7 @@ import actProject from "./actProject.js";
 import actCompany from "./actCompany.js";
 import actSprint from "./actSprint.js";
 import sprints from "./sprints.js";
+import tasks from "./tasks.js";
 
 export default combineReducers({
   companies: companiesReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
   actProject,
   actCompany,
   actSprint,
-  sprints
+  sprints,
+  tasks
 });

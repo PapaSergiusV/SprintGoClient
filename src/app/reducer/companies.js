@@ -1,9 +1,7 @@
 export default (companies = [], action) => {
   const { type } = action;
   switch (type) {
-    case "WRONG":
-      console.log(action.data);
-      return companies;
+    case "WRONG": return companies;
     case "GET_CS": return companies = action.data.companies;
     case "ADD_C": return companies = [...companies, action.data.company];
     case "DEL_C":

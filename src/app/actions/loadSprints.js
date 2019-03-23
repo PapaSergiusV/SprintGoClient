@@ -1,8 +1,7 @@
 import { url } from "../../fixtures/fixtures.js";
 
 export const loadSprints = (companyId, projectId, auth_token) => dispatch => {
-    // /companies/:company_id/projects/:project_id/sprints
-  fetch(`${url}/companies/${companyId}/projects/${projectId}/sprints`, {
+  fetch(`${url}companies/${companyId}/projects/${projectId}/sprints`, {
     headers: {
       "Authorization": auth_token
     }

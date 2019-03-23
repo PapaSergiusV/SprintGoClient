@@ -1,7 +1,9 @@
 import { url } from "../../fixtures/fixtures.js";
 
-export const loadSprint = (companyId, projectId, sprintId, auth_token) => dispatch => {
-  fetch(`${url}companies/${companyId}/projects/${projectId}/sprints/${sprintId}`, {
+export const addTask = (data, companyId, projectId, auth_token) => dispatch => {
+  fetch(`${url}companies/${companyId}/projects/${projectId}/tasks`, {
+    method: "POST",
+    body: data,
     headers: {
       "Authorization": auth_token
     }
@@ -9,7 +11,7 @@ export const loadSprint = (companyId, projectId, sprintId, auth_token) => dispat
     .then(response => response.json()
       .then(data => {
         if (response.ok)
-          dispatch({ type: 'GET_TASKS', data: data });
+          dispatch({ type: 'ADD_TASK', data: data });
         else
           handleError(response, data, dispatch);
       }));

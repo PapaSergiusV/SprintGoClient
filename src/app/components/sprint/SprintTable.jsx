@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import TextField from '@material-ui/core/TextField';
+import Button from "@material-ui/core/Button";
 import Task from "./Task.jsx";
 import { loadSprint } from "../../actions/loadSprint.js";
 import { addTask } from "../../actions/addTask.js";
@@ -23,17 +25,17 @@ class SprintTable extends Component {
     const { actSprint, tasks } = this.props;
 
     return (
-      <div>
-        <div>
+      <div className="tableSprint">
+        <div className="headSprint">
           {/* Заголовок спринта */}
-          <h3>{actSprint.name}</h3>
+          <h1>{actSprint.name}</h1>
           <p>{actSprint.period}</p>
         </div>
         {/* Таблица с 6 колонками */}
         <div className="table">
           {
             this.columns.map((name, key) =>
-              <div key={key}>
+              <div key={key} className="taskType">
                 <h4>{name}</h4>
                 {
                   tasks.map((task, key) => {
@@ -49,9 +51,11 @@ class SprintTable extends Component {
         </div>
         {/* Добавление таска */}
         <form onSubmit={this.addNewTask}>
-          <input type="text" name="name" placeholder="Title" required />
-          <input type="text" name="about" placeholder="Description" required />
-          <button type="submit">Add new task</button>
+          <p><TextField required id="standard-name" label="Title" name="Name" margin="normal" /></p>
+          <p><TextField required id="standard-required" label="Description" name="about" margin="normal" /></p>
+          <Button type="submit" variant="contained" color="primary" className="button">
+            Add new task
+          </Button>
         </form>
       </div>
     );

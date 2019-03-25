@@ -4,7 +4,7 @@ class Task extends Component {
   render() {
     const { name, about } = this.props.data;
     return(
-      <div>
+      <div className="task"> 
         <h4>{name}</h4>
         <p>{about}</p>
       </div>

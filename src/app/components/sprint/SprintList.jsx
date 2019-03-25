@@ -2,17 +2,25 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link, HashRouter } from "react-router-dom";
 
+
 import { loadSprints } from "../../actions/loadSprints.js";
 import { addSprint } from "../../actions/addSprint.js";
 import { chooseSprint } from "../../actions/chooseSprint.js";
 import { SPRINT } from "../../../shared/const.js";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import TextField from '@material-ui/core/TextField';
+import "./SprintList.module.scss"
+
 
 class SprintList extends Component {
   render() {
     const { actProject, sprints } = this.props;
     return (
       <div>
-        <h2>Sprint list of {actProject.name} project</h2>
+
+        <h2 className = "head1" >Sprint list of {actProject.name} project</h2>
         {/* Список спринтов с периодом каждого спринта. Все оформить по фен шую */}
         <HashRouter>
           <Fragment>
@@ -20,10 +28,17 @@ class SprintList extends Component {
               sprints[0] ?
                 sprints.map((sprint, key) =>
                   <div key={key}>
-                    <p><strong>{sprint.name}</strong> {sprint.period}</p>
-                    <Link to={SPRINT}>
-                      <button onClick={this.props.chooseSprint.bind(this, sprint)}>Show</button>
-                    </Link>
+                    <Paper  className="paper1">
+
+                      <p className = "nameSpr"><strong>{sprint.name}</strong> {sprint.period}</p>
+                      <Link to={SPRINT}>
+                        <Button variant = "extendedFab" className = "buttonSpr1"  onClick={this.props.chooseSprint.bind(this, sprint)}>
+                            Show
+                        </Button>
+
+                      </Link>
+
+                    </Paper>
                   </div>
                 )
                 :
@@ -31,12 +46,15 @@ class SprintList extends Component {
             }
           </Fragment>
         </HashRouter>
-        <form onSubmit={this.addNewSprint}>
-          <h3>Add new sprint:</h3>
-          <input type="text" name="name" placeholder="name" minLength="5" required />
-          <input type="text" name="period" placeholder="period" minLength="5" required />
-          <button type="submit">Add</button>
+        <form className="form1" onSubmit={this.addNewSprint}>
+          <h3 className="head3">Add new sprint:</h3>
+          <TextField variant="outlined" label="Name" type="text" name="name" minLength="5"/>
+          <TextField variant="outlined" label="Period" type="text" name="period" minLength="5"/>
+          <Button variant="raised" color="primary" className="buttonSpr2" type="submit">
+            Add
+          </Button>
         </form>
+
       </div>
     );
   }

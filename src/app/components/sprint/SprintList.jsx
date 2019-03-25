@@ -46,18 +46,13 @@ class SprintList extends Component {
             }
           </Fragment>
         </HashRouter>
-        <form className = "form1" onSubmit={this.addNewSprint}>
-
-          <h3 className = "head3">Add new sprint:</h3>
-          <TextField variant = "outlined" label = "Name"  input type = "text" name="name"  minLength="5"/>
-          <TextField variant = "outlined"  label = "Period"  input type="text" name="period" /*placeholder="period"*/ minLength="5"/>
-        
-        
-          <Button variant = "raised" color = "primary" className = "buttonSpr2"  type="submit">
-          Add
+        <form className="form1" onSubmit={this.addNewSprint}>
+          <h3 className="head3">Add new sprint:</h3>
+          <TextField variant="outlined" label="Name" type="text" name="name" minLength="5"/>
+          <TextField variant="outlined" label="Period" type="text" name="period" minLength="5"/>
+          <Button variant="raised" color="primary" className="buttonSpr2" type="submit">
+            Add
           </Button>
-           
-
         </form>
 
       </div>

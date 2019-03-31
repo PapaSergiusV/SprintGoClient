@@ -1,9 +1,9 @@
 import { url } from "../../fixtures/fixtures.js";
 
-export const loadCompanies = (userId, auth_token) => dispatch => {
-  // userId || dispatch({ type: "REMOVE_USER", data: {} });
-  console.log("load_cs")
-  fetch(`${url}roles/companies_list/${userId}`, {
+export const removeRole = (id, companyId, auth_token) => {
+  // companies/:company_id/roles
+  fetch(`${url}companies/${companyId}/roles/${id}`, {
+    method: "DELETE",
     headers: {
       "Authorization": auth_token
     }
@@ -11,7 +11,7 @@ export const loadCompanies = (userId, auth_token) => dispatch => {
     .then(response => response.json()
       .then(data => {
         if (response.ok)
-          dispatch({ type: 'GET_CS', data: data });
+          window.location.reload();
         else
           handleError(response, data, dispatch);
       }));

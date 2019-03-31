@@ -8,6 +8,7 @@ import actCompany from "./actCompany.js";
 import actSprint from "./actSprint.js";
 import sprints from "./sprints.js";
 import tasks from "./tasks.js";
+import users from "./users.js";
 
 export default combineReducers({
   companies: companiesReducer,
@@ -17,5 +18,6 @@ export default combineReducers({
   actCompany,
   actSprint,
   sprints,
-  tasks
+  tasks,
+  users
 });

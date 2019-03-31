@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Select from "react-select";
 
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from '@material-ui/core/TextField';
+import Chip from "@material-ui/core/Chip";
 
 import { editCompany } from "../../actions/editCompany.js";
+import { loadUsers } from "../../actions/loadUsers.js";
 import { handleText } from "../../../libs/handleText.js";
+import { addRole } from "../../actions/addRole.js";
+import { removeRole } from "../../actions/removeRole.js";
 
 class EditCompany extends Component {
   constructor(props) {
@@ -16,6 +21,10 @@ class EditCompany extends Component {
     this.about = React.createRef();
     this.address = React.createRef();
     this.phone = React.createRef();
+  }
+
+  componentDidMount = () => {
+    this.props.loadUsers(this.props.authToken);
   }
 
   render() {
@@ -27,25 +36,79 @@ class EditCompany extends Component {
           <Grid item xs={12} sm={6}>
             <Paper className="paper">
               <h3><span>Edit company</span></h3>
-              <p><TextField required id="standard-name" label="Name" margin="normal" defaultValue={company.name} ref={this.name}/></p>
-              <p><TextField id="standard-required" label="About" margin="normal" fullWidth defaultValue={company.about} ref={this.about}/></p>
-              <p><TextField id="standard-required" label="Adress" margin="normal" fullWidth defaultValue={company.address} ref={this.address}/></p>
-              <p><TextField id="standard-required" label="Contacts" margin="normal" fullWidth defaultValue={company.phone} ref={this.phone}/></p>
-              <p>
+              <div><TextField required id="standard-name" label="Name" margin="normal" defaultValue={company.name} ref={this.name} /></div>
+              <div><TextField id="standard-required" label="About" margin="normal" fullWidth defaultValue={company.about} ref={this.about} /></div>
+              <div><TextField id="standard-required" label="Adress" margin="normal" fullWidth defaultValue={company.address} ref={this.address} /></div>
+              <div><TextField id="standard-required" label="Contacts" margin="normal" fullWidth defaultValue={company.phone} ref={this.phone} /></div>
+              <div>
                 <Button variant="contained" color="primary" className="button" onClick={this.handleForm}>
                   Apply changes
                 </Button>
-              </p>
+              </div>
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6}>
             <Paper className="paper">
               <h3><span>Employee management</span></h3>
+              {/* TO DO: Оформить список работников в виде таблицыю Слева emails, справа должности */}
+              { 
+                workers ? 
+                  workers.map(worker =>
+                    <div key={worker.id} className="chip">
+                      <Chip label={worker.email}  onDelete={this.deleteWorker} color="primary" className="chip-worker" />
+                      {worker.roles.map((role, key) => 
+                        <span key={key}>
+                          <Chip 
+                            label={role.name} 
+                            onDelete={role.name !== "Owner" ? this.deleteRole.bind(this, role.id) : null} 
+                            color="primary" 
+                            variant="outlined"/>
+                        </span>
+                      )}
+                    </div>
+                  )
+                  :
+                  <div className="loading"><p>There are no employees yet</p></div>
+              }
+              {/* Форма создания роли */}
+              <h3>Add role</h3>
+              <form onSubmit={this.addRole}>
+                <Select
+                  name="role[user_id]"
+                  placeholder="Select worker"
+                  options={workers.map(worker => ({value: worker.id, label: worker.email}))} />
+                <input type="text" name="role[name]" placeholder="Write role name" required/>
+                <button type="submit">Add</button>
+              </form>
+              {/* Форма добавления работника в компанию */}
+              <h3>Add worker</h3>
+              <form onSubmit={this.addRole}>
+                <Select 
+                  name="role[user_id]"
+                  placeholder="New worker"
+                  options={this.props.users && this.props.users.map(user => ({value: user.id, label: user.email}))} />
+                <input type="text" name="role[name]" placeholder="Write role name" required/>
+                <button type="submit">Add</button>
+              </form>
             </Paper>
           </Grid>
         </Grid>
       </div>
     );
+  }
+
+  deleteRole = (id) => {
+    removeRole(id, this.props.company.id, this.props.authToken);
+  }
+
+  deleteWorker = () => {
+
+  }
+
+  addRole = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    addRole(this.props.company.id, data, this.props.authToken);
   }
 
   handleForm = () => {
@@ -73,6 +136,7 @@ class EditCompany extends Component {
 }
 
 export default connect(state => ({
-  auth_token: state.user.auth_token,
-  userId: state.user.id
-}), {editCompany})(EditCompany);
+  authToken: state.user.auth_token,
+  userId: state.user.id,
+  users: state.users
+}), { editCompany, loadUsers })(EditCompany);

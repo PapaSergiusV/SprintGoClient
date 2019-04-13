@@ -3,6 +3,11 @@ import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 class About extends Component {
   render() {
@@ -34,16 +39,31 @@ class About extends Component {
             <Paper className="paper">
               <h3><span>Employees:</span></h3>
               {/* TO DO: Оформить список работников в виде таблицыю Слева emails, справа должности, без использования Chips и т.д.*/}
-              {
-                workers ?
-                  workers.map(worker =>
-                    <div key={worker.id} className="chip">
-                      {worker.email} - {worker.roles.map((role, key) => <span key={key}>{role.name}</span>)}
-                    </div>
-                  )
-                  :
-                  <div className="loading"><p>There are no employees yet</p></div>
-              }
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>EMAIL</TableCell>
+                    <TableCell>ROLE</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {
+                    workers ?
+                      workers.map(worker =>
+                        <TableRow key={worker.id}>
+                          <TableCell>
+                            {worker.email}
+                          </TableCell>
+                          <TableCell>
+                            {worker.roles.map((role, key) => <span key={key}>{role.name}</span>)}
+                          </TableCell>
+                        </TableRow>
+                      )
+                      :
+                      <div className="loading"><p>There are no employees yet</p></div>
+                  }
+                </TableBody>
+              </Table>
             </Paper>
           </Grid>
         </Grid>

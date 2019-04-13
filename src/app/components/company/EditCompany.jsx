@@ -7,6 +7,11 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from '@material-ui/core/TextField';
 import Chip from "@material-ui/core/Chip";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 import { editCompany } from "../../actions/editCompany.js";
 import { loadUsers } from "../../actions/loadUsers.js";
@@ -50,44 +55,56 @@ class EditCompany extends Component {
           <Grid item xs={12} sm={6}>
             <Paper className="paper">
               <h3><span>Employee management</span></h3>
-              {/* TO DO: Оформить список работников в виде таблицыю Слева emails, справа должности */}
-              { 
-                workers ? 
-                  workers.map(worker =>
-                    <div key={worker.id} className="chip">
-                      <Chip label={worker.email}  onDelete={this.deleteWorker} color="primary" className="chip-worker" />
-                      {worker.roles.map((role, key) => 
-                        <span key={key}>
-                          <Chip 
-                            label={role.name} 
-                            onDelete={role.name !== "Owner" ? this.deleteRole.bind(this, role.id) : null} 
-                            color="primary" 
-                            variant="outlined"/>
-                        </span>
-                      )}
-                    </div>
-                  )
-                  :
-                  <div className="loading"><p>There are no employees yet</p></div>
-              }
+              {/* TO DO: Оформить список работников в виде таблицы Слева emails, справа должности */}
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>EMAIL</TableCell>
+                    <TableCell>ROLE</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {
+                    workers ?
+                      workers.map(worker =>
+                        <TableRow key={worker.id}>
+                          <TableCell>
+                            <Chip label={worker.email} onDelete={this.deleteWorker} color="primary" className="chip-worker" />
+                          </TableCell>
+                          {worker.roles.map((role, key) =>
+                            <TableCell>
+                              <Chip
+                                label={role.name}
+                                onDelete={role.name !== "Owner" ? this.deleteRole.bind(this, role.id) : null}
+                                color="primary"
+                                variant="outlined" />
+                            </TableCell>
+                          )}
+                        </TableRow>
+                      )
+                      :
+                      <div className="loading"><p>There are no employees yet</p></div>
+                  }
+                </TableBody>
+              </Table>
               {/* Форма создания роли */}
               <h3>Add role</h3>
               <form onSubmit={this.addRole}>
                 <Select
                   name="role[user_id]"
                   placeholder="Select worker"
-                  options={workers.map(worker => ({value: worker.id, label: worker.email}))} />
-                <input type="text" name="role[name]" placeholder="Write role name" required/>
+                  options={workers.map(worker => ({ value: worker.id, label: worker.email }))} />
+                <input type="text" name="role[name]" placeholder="Write role name" required />
                 <button type="submit">Add</button>
               </form>
               {/* Форма добавления работника в компанию */}
               <h3>Add worker</h3>
               <form onSubmit={this.addRole}>
-                <Select 
+                <Select
                   name="role[user_id]"
                   placeholder="New worker"
-                  options={this.props.users && this.props.users.map(user => ({value: user.id, label: user.email}))} />
-                <input type="text" name="role[name]" placeholder="Write role name" required/>
+                  options={this.props.users && this.props.users.map(user => ({ value: user.id, label: user.email }))} />
+                <input type="text" name="role[name]" placeholder="Write role name" required />
                 <button type="submit">Add</button>
               </form>
             </Paper>

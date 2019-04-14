@@ -1,10 +1,66 @@
 @import "../../../shared/variables";
 
 
-.tableSprint{
+.table-sprint{
 
-  .headSprint{
+  .task-modal {
+    height: 80vh;
+    width: 40%;
+    min-width: 400px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px 0;
+    position: relative;
+
+    .content {
+      padding: 0 20px;
+
+      div.field {
+        
+        div {
+          width: 100%;
+        }
+      }
+
+      p {
+        text-align: justify;
+      }
+
+      .textfield {
+        width: 100%;
+
+        label {
+          background: white;
+        }
+      }
+    }
+
+    .buttons {
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      width: calc(100% - 40px);
+    }
+  }
+
+  h4 {
+    background: #57b846;
+    color: #ffffff;
+    margin-bottom: 5px;
+    padding: 10px;
     text-align: center;
+  }
+
+  .head-sprint{
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px 10px 10px;
+
+    button {
+      width: 120px;
+    }
   }
 
   .table {
@@ -20,6 +76,10 @@
       text-align: center;
       padding: 10px;
       border-right: 1px solid darkgray;
+
+      &:first-child {
+        border-left: 1px solid darkgray;
+      }
     }
 
     .task {
@@ -37,38 +97,6 @@
       p {
         padding: 10px;
       }
-    }
-
-    .task-modal {
-      height: 80vh;
-      width: 40%;
-      min-width: 400px;
-      background: white;
-      border-radius: 10px;
-      padding: 10px 0;
-
-      .content {
-        padding: 0 20px;
-
-        p {
-          text-align: justify;
-        }
-
-        .textfield {
-          width: 100%;
-
-          label {
-            background: white;
-          }
-        }
-      }
-    }
-
-    h4 {
-      background: #57b846;
-      color: #ffffff;
-      margin-bottom: 5px;
-      padding: 10px;
     }
 
     .button {

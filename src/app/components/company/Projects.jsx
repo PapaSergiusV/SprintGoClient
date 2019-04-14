@@ -51,15 +51,17 @@ class Projects extends Component {
               <h3>
                 Create new project
               </h3>
-              <div>
-                <TextField required id="standard-name" label="Name" margin="normal" />
-              </div>
-              <div>
-                <TextField id="standard-required" label="About" margin="normal" fullWidth />
-              </div>
-              <Button variant="contained" color="primary" className="button">
-                Create
+              <form onSubmit={this.handleSubmit}>
+                <div>
+                  <TextField required id="standard-name" label="Name" margin="normal" name="name" />
+                </div>
+                <div>
+                  <TextField id="standard-required" label="About" margin="normal" fullWidth name="about" />
+                </div>
+                <Button variant="contained" color="primary" className="button" type="submit">
+                  Create
                 </Button>
+              </form>
             </Paper>
           </Grid>
         </Grid>

@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import Select from "react-select";
 import Button from "@material-ui/core/Button";
-import Save from "@material-ui/icons/Save"
+import Save from "@material-ui/icons/Save";
+import DeleteForever from "@material-ui/icons/DeleteForever";
 import TextField from "@material-ui/core/TextField";
 
 import { columns } from "../../../shared/const.js";
@@ -23,11 +24,6 @@ class Task extends Component {
               <h4>{name}</h4>
               <form className="content" onSubmit={this.updateTask}>
                 <input type="text" name="id" value={id} hidden readOnly />
-                <Select 
-                  name="state"
-                  placeholder={state}
-                  options={columns.map(column => ({ value: column, label: column }))}
-                />
                 <TextField
                   label="Description"
                   name="about"
@@ -38,10 +34,22 @@ class Task extends Component {
                   variant="outlined"
                   className="textfield"
                 />
-                <Button variant="contained" size="small" type="submit">
-                  <Save />
-                  Save
-                </Button>
+                <p>Status:</p>
+                <Select 
+                  name="state"
+                  placeholder={state}
+                  options={columns.map(column => ({ value: column, label: column }))}
+                />
+                <div className="buttons">
+                  <Button variant="contained" color="secondary" size="small">
+                    <DeleteForever />
+                    Remove task
+                  </Button>
+                  <Button variant="contained" size="small" type="submit">
+                    <Save />
+                    Save changes
+                  </Button>
+                </div>
               </form>
             </div>
           </Fragment>

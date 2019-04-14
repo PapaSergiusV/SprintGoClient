@@ -9,6 +9,7 @@ import StarRate from '@material-ui/icons/StarRate';
 import Collapse from '@material-ui/core/Collapse';
 import ListItem from '@material-ui/core/ListItem';
 import AddCircle from "@material-ui/icons/AddCircle";
+import TableChart from "@material-ui/icons/TableChart";
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -16,9 +17,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { showWindow, hideWindow } from "../../../libs/ModalAnimation.js";
-import { COMPANY, PROFILE } from "../../../shared/const.js";
+import { COMPANY, PROFILE, SPRINT } from "../../../shared/const.js";
 import { loadCompanies } from "../../actions/loadCompanies.js";
 import { chooseCompany } from "../../actions/chooseCompany";
+import { chooseSprint } from "../../actions/chooseSprint";
 
 class Navbar extends Component {
   constructor(props) {
@@ -134,6 +136,29 @@ class Navbar extends Component {
                   </ListItem>
                 </List>
               </Collapse>
+              <hr/>
+              <ListItem>
+                <ListItemText primary="Active sprints:" />
+              </ListItem>
+              { 
+                companies.map(company => company.projects.map(project => {
+                  if (!project)
+                    return;
+                  const sprint = project.sprints.sort((x, y) => +y.id - +x.id)[0]
+                  if (!sprint)
+                    return;
+                  return (
+                    <Link to={SPRINT} key={project.id}>
+                      <ListItem button onClick={close}>
+                        <ListItemIcon>
+                          <TableChart />
+                        </ListItemIcon>
+                        <ListItemText inset primary={project.name} onClick={this.props.chooseSprint.bind(this, sprint)} />
+                      </ListItem>
+                    </Link>
+                  );
+                }))
+              }
 
             </List>
           </nav>
@@ -147,4 +172,4 @@ class Navbar extends Component {
 export default connect(state => ({
   companies: state.companies,
   auth_token: state.user.auth_token
-}), { loadCompanies, chooseCompany })(Navbar);
+}), { loadCompanies, chooseCompany, chooseSprint })(Navbar);

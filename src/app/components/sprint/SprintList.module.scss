@@ -14,13 +14,8 @@
 .paper1 {
   padding: 2px;
   margin-bottom: 5px;
-  width: 50%;
-
-  .buttonSpr1 {
-    width: 10%;
-    margin-left: 87%;
-    margin-bottom: 7px;
-  }
+  display: flex;
+  justify-content: space-between;
   
   .nameSpr {
     margin-top: 15px;

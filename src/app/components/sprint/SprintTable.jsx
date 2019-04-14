@@ -6,20 +6,10 @@ import Button from "@material-ui/core/Button";
 import Task from "./Task.jsx";
 import { loadSprint } from "../../actions/loadSprint.js";
 import { addTask } from "../../actions/addTask.js";
+import { columns } from "../../../shared/const.js";
 import "./SprintTable.module.scss";
 
 class SprintTable extends Component {
-  constructor(props) {
-    super(props);
-    this.columns = [
-      "To Do",
-      "Rejected",
-      "In progress",
-      "QA",
-      "Deploy",
-      "Done"
-    ];
-  }
 
   render() {
     const { actSprint, tasks } = this.props;
@@ -34,9 +24,9 @@ class SprintTable extends Component {
         {/* Таблица с 6 колонками */}
         <div className="table">
           {
-            this.columns.map((name, key) =>
+            columns.map((name, key) =>
               <div key={key} className="taskType">
-                <h4>{name}</h4>
+                <h3>{name}</h3>
                 {
                   tasks.map((task, key) => {
                     return (task.state == name ?
@@ -51,8 +41,8 @@ class SprintTable extends Component {
         </div>
         {/* Добавление таска */}
         <form onSubmit={this.addNewTask}>
-          <p><TextField required id="standard-name" label="Title" name="Name" margin="normal" /></p>
-          <p><TextField required id="standard-required" label="Description" name="about" margin="normal" /></p>
+          <div><TextField required id="standard-name" label="Title" name="Name" margin="normal" /></div>
+          <div><TextField required id="standard-required" label="Description" name="about" margin="normal" /></div>
           <Button type="submit" variant="contained" color="primary" className="button">
             Add new task
           </Button>

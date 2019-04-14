@@ -72,7 +72,7 @@ class EditCompany extends Component {
                             <Chip label={worker.email} onDelete={this.deleteWorker} color="primary" className="chip-worker" />
                           </TableCell>
                           {worker.roles.map((role, key) =>
-                            <TableCell>
+                            <TableCell key={key}>
                               <Chip
                                 label={role.name}
                                 onDelete={role.name !== "Owner" ? this.deleteRole.bind(this, role.id) : null}

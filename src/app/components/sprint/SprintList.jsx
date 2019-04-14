@@ -21,7 +21,6 @@ class SprintList extends Component {
       <div>
 
         <h2 className = "head1" >Sprint list of {actProject.name} project</h2>
-        {/* Список спринтов с периодом каждого спринта. Все оформить по фен шую */}
         <HashRouter>
           <Fragment>
             {
@@ -32,7 +31,7 @@ class SprintList extends Component {
 
                       <p className = "nameSpr"><strong>{sprint.name}</strong> {sprint.period}</p>
                       <Link to={SPRINT}>
-                        <Button variant = "extendedFab" className = "buttonSpr1"  onClick={this.props.chooseSprint.bind(this, sprint)}>
+                        <Button variant = "contained" onClick={this.props.chooseSprint.bind(this, sprint)}>
                             Show
                         </Button>
 
@@ -50,7 +49,7 @@ class SprintList extends Component {
           <h3 className="head3">Add new sprint:</h3>
           <TextField variant="outlined" label="Name" type="text" name="name" minLength="5"/>
           <TextField variant="outlined" label="Period" type="text" name="period" minLength="5"/>
-          <Button variant="raised" color="primary" className="buttonSpr2" type="submit">
+          <Button variant="contained" color="primary" className="buttonSpr2" type="submit">
             Add
           </Button>
         </form>

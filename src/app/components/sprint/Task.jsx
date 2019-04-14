@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+
 import Select from "react-select";
 import Button from "@material-ui/core/Button";
 import Save from "@material-ui/icons/Save";
@@ -7,6 +9,8 @@ import TextField from "@material-ui/core/TextField";
 
 import { columns } from "../../../shared/const.js";
 import ModalWindow from "../../../shared/modal/ModalWindow.jsx";
+import { removeTask } from "../../actions/removeTask.js";
+import { updateTask } from "../../actions/updateTask.js";
 
 class Task extends Component {
   state = {
@@ -14,7 +18,7 @@ class Task extends Component {
   }
 
   render() {
-    const { name, about, state, id } = this.props.data;
+    const { name, about, state, id } = this.props.task;
     const { modalMode } = this.state;
     return (
       <Fragment>
@@ -41,7 +45,7 @@ class Task extends Component {
                   options={columns.map(column => ({ value: column, label: column }))}
                 />
                 <div className="buttons">
-                  <Button variant="contained" color="secondary" size="small">
+                  <Button variant="contained" color="secondary" size="small" onClick={this.removeTask}>
                     <DeleteForever />
                     Remove task
                   </Button>
@@ -62,9 +66,17 @@ class Task extends Component {
     );
   }
 
+  removeTask = () => {
+    const { company, task, authToken, project, sprint } = this.props;
+    if (confirm("Are you sure?"))
+      this.props.removeTask(task.id, company.id, project.id, authToken, sprint.id);
+  }
+
   updateTask = (event) => {
     event.preventDefault();
-    console.log(event.target);
+    const { company, task, authToken, project, sprint } = this.props;
+    let data = new FormData(event.target);
+    this.props.updateTask(task.id, company.id, project.id, data, authToken, sprint.id);
   }
 
   showTaskModal = () => {
@@ -72,4 +84,9 @@ class Task extends Component {
   }
 }
 
-export default Task;
+export default connect(state => ({
+  authToken: state.user.auth_token,
+  project: state.actProject,
+  company: state.actCompany,
+  sprint: state.actSprint
+}), { removeTask, updateTask })(Task);

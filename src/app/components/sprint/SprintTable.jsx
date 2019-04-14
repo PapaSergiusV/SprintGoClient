@@ -17,7 +17,7 @@ class SprintTable extends Component {
   }
 
   render() {
-    const { actSprint, tasks } = this.props;
+    const { actSprint, tasks, actCompany, authToken, actProject } = this.props;
     const { addTaskMode } = this.state;
     return (
       <Fragment>
@@ -69,7 +69,7 @@ class SprintTable extends Component {
                   {
                     tasks.map((task, key) => {
                       return (task.state == name ?
-                        <Task data={task} key={key} />
+                        <Task task={task} key={key} />
                         :
                         null);
                     })

@@ -60,7 +60,7 @@ class EditCompany extends Component {
                 <TableHead>
                   <TableRow>
                     <TableCell>EMAIL</TableCell>
-                    <TableCell>ROLE</TableCell>
+                    <TableCell>ROLES</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -71,15 +71,16 @@ class EditCompany extends Component {
                           <TableCell>
                             <Chip label={worker.email} onDelete={this.deleteWorker} color="primary" className="chip-worker" />
                           </TableCell>
-                          {worker.roles.map((role, key) =>
-                            <TableCell key={key}>
+                          <TableCell>
+                            {worker.roles.map((role) =>
                               <Chip
+                                key={role.id}
                                 label={role.name}
                                 onDelete={role.name !== "Owner" ? this.deleteRole.bind(this, role.id) : null}
                                 color="primary"
                                 variant="outlined" />
-                            </TableCell>
-                          )}
+                            )}
+                          </TableCell>
                         </TableRow>
                       )
                       :

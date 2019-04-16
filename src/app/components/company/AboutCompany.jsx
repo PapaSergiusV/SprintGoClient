@@ -43,7 +43,7 @@ class About extends Component {
                 <TableHead>
                   <TableRow>
                     <TableCell>EMAIL</TableCell>
-                    <TableCell>ROLE</TableCell>
+                    <TableCell>ROLES</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -55,7 +55,7 @@ class About extends Component {
                             {worker.email}
                           </TableCell>
                           <TableCell>
-                            {worker.roles.map((role, key) => <span key={key}>{role.name}</span>)}
+                            {worker.roles.map((role, key) => <span key={key}>{`${role.name}. `}</span>)}
                           </TableCell>
                         </TableRow>
                       )

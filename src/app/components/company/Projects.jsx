@@ -70,7 +70,7 @@ class Projects extends Component {
   }
 
   componentDidMount = () => {
-    this.props.loadProjects(this.props.company.id, this.props.authToken)
+    this.props.loadProjects(this.props.company.id, this.props.authToken);
   }
 
   selectProject = (project) => this.props.chooseProject(project);

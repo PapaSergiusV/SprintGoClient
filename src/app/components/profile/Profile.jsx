@@ -43,7 +43,7 @@ class Profile extends Component {
                       <div key={key}>
                         Company: {role.company}, role: {role.name}
                       </div>) :
-                    <p>You haven't got any roles yet</p>
+                    <p>You haven&#39;t got any roles yet</p>
                 }
                 <div><h3>About:</h3><p>{about}</p></div>
               </Paper>

@@ -34,7 +34,6 @@ class ContentMaker extends Component {
   }
 
   componentDidMount = () => {
-    console.log("Enter: ", this.props.userId, this.props.auth_token)
     this.props.loadCompanies(this.props.userId, this.props.auth_token);
   }
 
@@ -75,7 +74,7 @@ class ContentMaker extends Component {
   }
 
   showHideCreateCompanyWindow = () => {
-    this.setState({ createCompanyMode: !this.state.createCompanyMode })
+    this.setState({ createCompanyMode: !this.state.createCompanyMode });
   }
 
   toggleNav = () => {

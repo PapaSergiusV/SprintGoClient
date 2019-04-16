@@ -18,4 +18,4 @@ export default (tasks = [], action) => {
       return tasks;
   }
   return tasks;
-}
+};

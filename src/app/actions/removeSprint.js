@@ -1,5 +1,6 @@
 import { url } from "../../fixtures/fixtures.js";
 import { loadSprints } from "./loadSprints.js";
+import { handleError } from "./handleError.js";
 
 export const removeSprint = (id, companyId, projectId, auth_token) => dispatch => {
   // companies/:company_id/projects/:project_id/sprints/:id(.:format)

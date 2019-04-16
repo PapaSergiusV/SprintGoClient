@@ -1,4 +1,5 @@
 import { url } from "../../fixtures/fixtures.js";
+import { handleError } from "./handleError.js";
 
 export const editCompany = (id, auth_token, company) => dispatch => {
   let formData = new FormData();
@@ -21,7 +22,3 @@ export const editCompany = (id, auth_token, company) => dispatch => {
           handleError(response, data, dispatch);
       }));
 };
-
-//Multinational telecommunications holding company which includes many components of the former Bell System. Headquartered in Dallas, the company includes Cricket Wireless and DirecTV.
-//Whitacre Tower, Dallas, Texas, U.S.
-//att.com

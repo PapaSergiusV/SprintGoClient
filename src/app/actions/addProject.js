@@ -1,4 +1,5 @@
 import { url } from "../../fixtures/fixtures.js";
+import { handleError } from "./handleError.js";
 
 export const addProject = (companyId, project, auth_token) => dispatch => {
   let formData = new FormData();

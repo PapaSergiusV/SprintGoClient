@@ -17,7 +17,7 @@ class SprintTable extends Component {
   }
 
   render() {
-    const { actSprint, tasks, actCompany, authToken, actProject } = this.props;
+    const { actSprint, tasks } = this.props;
     const { addTaskMode } = this.state;
     return (
       <Fragment>

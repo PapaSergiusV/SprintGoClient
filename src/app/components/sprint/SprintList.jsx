@@ -4,7 +4,6 @@ import { Link, HashRouter } from "react-router-dom";
 
 import Calendar from "react-calendar";
 import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 
@@ -13,8 +12,7 @@ import { addSprint } from "../../actions/addSprint.js";
 import { chooseSprint } from "../../actions/chooseSprint.js";
 import { removeSprint } from "../../actions/removeSprint.js";
 import { SPRINT } from "../../../shared/const.js";
-import "./SprintList.module.scss"
-
+import "./SprintList.module.scss";
 
 class SprintList extends Component {
   state = {

@@ -4,4 +4,4 @@ export default (users = [], action) => {
     case "GET_USERS": return users = action.data.users;
   }
   return users;
-}
+};

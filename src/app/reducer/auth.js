@@ -6,5 +6,6 @@ export default (user = {}, action) => {
       return user = action.data;
     case "REMOVE_USER": return user = {};
   }
-  return user = JSON.parse(window.localStorage.getItem("user"));
-}
+  user = JSON.parse(window.localStorage.getItem("user"));
+  return user;
+};

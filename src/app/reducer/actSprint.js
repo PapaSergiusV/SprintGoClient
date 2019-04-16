@@ -5,5 +5,6 @@ export default (actSprint = {}, action) => {
       window.localStorage.setItem("actSprint", JSON.stringify(action.data));
       return actSprint = action.data;
   }
-  return actSprint = JSON.parse(window.localStorage.getItem("actSprint")) || {};
-}
+  actSprint = JSON.parse(window.localStorage.getItem("actSprint")) || {};
+  return actSprint;
+};

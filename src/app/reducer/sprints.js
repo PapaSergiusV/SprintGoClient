@@ -5,4 +5,4 @@ export default (sprints = [], action) => {
     case "ADD_SPRINT": return sprints = [...sprints, action.data.sprint];
   }
   return sprints;
-}
+};

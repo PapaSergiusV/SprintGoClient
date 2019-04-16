@@ -19,4 +19,4 @@ export default (companies = [], action) => {
       return companies;
   }
   return companies;
-}
+};

@@ -1,8 +1,7 @@
 import { url } from "../../fixtures/fixtures.js";
+import { handleError } from "./handleError.js";
 
 export const loadCompanies = (userId, auth_token) => dispatch => {
-  // userId || dispatch({ type: "REMOVE_USER", data: {} });
-  console.log("load_cs")
   fetch(`${url}roles/companies_list/${userId}`, {
     headers: {
       "Authorization": auth_token

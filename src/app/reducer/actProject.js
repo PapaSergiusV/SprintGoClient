@@ -5,5 +5,6 @@ export default (actProject = {}, action) => {
       window.localStorage.setItem("actProject", JSON.stringify(action.data));
       return actProject = action.data;
   }
-  return actProject = JSON.parse(window.localStorage.getItem("actProject")) || {};
-}
+  actProject = JSON.parse(window.localStorage.getItem("actProject")) || {};
+  return actProject;
+};

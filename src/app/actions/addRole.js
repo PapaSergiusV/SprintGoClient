@@ -1,4 +1,5 @@
 import { url } from "../../fixtures/fixtures.js";
+import { handleError } from "./handleError.js";
 
 export const addRole = (companyId, data, auth_token) => {
   // companies/:company_id/roles
@@ -14,6 +15,6 @@ export const addRole = (companyId, data, auth_token) => {
         if (response.ok)
           window.location.reload();
         else
-          handleError(response, data, dispatch);
+          handleError(response, data);
       }));
 };

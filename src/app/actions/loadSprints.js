@@ -1,4 +1,5 @@
 import { url } from "../../fixtures/fixtures.js";
+import { handleError } from "./handleError.js";
 
 export const loadSprints = (companyId, projectId, auth_token) => dispatch => {
   fetch(`${url}companies/${companyId}/projects/${projectId}/sprints`, {

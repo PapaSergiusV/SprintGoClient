@@ -1,4 +1,5 @@
 import { url } from "../../fixtures/fixtures.js";
+import { handleError } from "./handleError.js";
 
 export const loadUsers = (auth_token) => dispatch => {
   fetch(`${url}all_users`, {

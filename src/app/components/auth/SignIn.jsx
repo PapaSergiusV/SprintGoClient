@@ -1,22 +1,5 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-
-import List from '@material-ui/core/List';
-import Face from '@material-ui/icons/Face';
-import Stars from '@material-ui/icons/Stars';
-import Button from "@material-ui/core/Button";
-import StarRate from '@material-ui/icons/StarRate';
-import MenuIcon from "@material-ui/icons/Menu";
-import Collapse from '@material-ui/core/Collapse';
-import ListItem from '@material-ui/core/ListItem';
-import IconButton from "@material-ui/core/IconButton";
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import Typography from "@material-ui/core/Typography";
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { signIn } from "../../actions/signIn.js";
 
@@ -65,7 +48,7 @@ class SignIn extends Component {
               <div className="sprintgo">
                 <span className="txt1">
                   SprintGO
-				      	</span>
+                </span>
               </div>
             </div>
           </div>
@@ -77,13 +60,13 @@ class SignIn extends Component {
   handleEmail = (event) => {
     this.setState({
       email: event.target.value
-    })
+    });
   }
 
   handlePass = (event) => {
     this.setState({
       password: event.target.value
-    })
+    });
   }
 
   submitData = () => {

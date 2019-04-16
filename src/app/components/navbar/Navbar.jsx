@@ -144,7 +144,7 @@ class Navbar extends Component {
                 companies.map(company => company.projects.map(project => {
                   if (!project)
                     return;
-                  const sprint = project.sprints.sort((x, y) => +y.id - +x.id)[0]
+                  const sprint = project.sprints.sort((x, y) => +y.id - +x.id)[0];
                   if (!sprint)
                     return;
                   return (

@@ -146,7 +146,7 @@ class EditCompany extends Component {
       about: about,
       address: this.address.current.value,
       phone: this.phone.current.value
-    }
+    };
 
     this.props.editCompany(this.props.company.id, this.props.auth_token, company);
     this.props.redirectTo(this.props.redirectVal);

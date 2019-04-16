@@ -5,4 +5,4 @@ export default (projects = [], action) => {
     case "ADD_PROJECT": return projects = [...projects, action.data.project];
   }
   return projects;
-}
+};

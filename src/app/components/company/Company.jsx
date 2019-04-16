@@ -78,7 +78,7 @@ class Company extends Component {
     else
       return (
         <div >
-          <h2>There are no companies yet. You can add your company. Click 'Create company' in menu.</h2>
+          <h2>There are no companies yet. You can add your company. Click Create Company in menu.</h2>
         </div>
       );
   }
@@ -107,7 +107,7 @@ class Company extends Component {
   setPage = (page) => {
     this.setState({
       page: page
-    })
+    });
   }
 }
 

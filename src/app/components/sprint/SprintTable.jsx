@@ -6,19 +6,23 @@ import Button from "@material-ui/core/Button";
 import ShowChart from "@material-ui/icons/ShowChart";
 import Task from "./Task.jsx";
 import ModalWindow from "../../../shared/modal/ModalWindow.jsx";
+import Graph from "./Graph.jsx";
 import { loadSprint } from "../../actions/loadSprint.js";
 import { addTask } from "../../actions/addTask.js";
 import { columns } from "../../../shared/const.js";
+import { railsToJsTime, getHours, getDays } from "../../../libs/convertTime.js";
 import "./SprintTable.module.scss";
 
 class SprintTable extends Component {
   state = {
-    addTaskMode: false
+    addTaskMode: false,
+    graphMode: false
   }
 
   render() {
     const { actSprint, tasks } = this.props;
-    const { addTaskMode } = this.state;
+    const { addTaskMode, graphMode } = this.state;
+    const timeLeft = this.getLeftTime();
     return (
       <Fragment>
         <ModalWindow open={addTaskMode} close={this.showHideAddTaskModal}>
@@ -47,6 +51,9 @@ class SprintTable extends Component {
             </div>
           </Fragment>
         </ModalWindow>
+        <ModalWindow open={graphMode} close={this.showHideGraph}>
+          <Graph sprint={actSprint} tasks={tasks}/>
+        </ModalWindow>
         <div className="table-sprint">
           <div className="head-sprint">
             <div>
@@ -54,10 +61,10 @@ class SprintTable extends Component {
             </div>
             <div>
               <h1>{actSprint.name}</h1>
-              <p>{actSprint.period}</p>
+              <p><strong>{timeLeft.hours}</strong> hours and <strong>{timeLeft.days}</strong> days left</p>
             </div>
             <div>
-              <Button variant="outlined" color="primary" className="button"><ShowChart /></Button>
+              <Button variant="outlined" color="primary" className="button" onClick={this.showHideGraph}><ShowChart /></Button>
             </div>
           </div>
           {/* Таблица с 6 колонками */}
@@ -92,7 +99,17 @@ class SprintTable extends Component {
       this.loadSprint();
   }
 
+  getLeftTime = () => {
+    const timeLeft = railsToJsTime(this.props.actSprint.deadline) - new Date;
+    return {
+      days: getDays(timeLeft),
+      hours: getHours(timeLeft)
+    };
+  }
+
   showHideAddTaskModal = () => this.setState({ addTaskMode: !this.state.addTaskMode });
+
+  showHideGraph = () => this.setState({ graphMode: !this.state.graphMode });
 
   loadSprint = () => {
     const { actCompany, actProject, actSprint, authToken } = this.props;

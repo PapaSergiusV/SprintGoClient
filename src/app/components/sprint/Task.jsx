@@ -18,8 +18,9 @@ class Task extends Component {
   }
 
   render() {
-    const { name, about, state, id } = this.props.task;
+    const { name, about, state, id, time } = this.props.task;
     const { modalMode } = this.state;
+    const selectOptions = columns.map(column => ({ value: column, label: column }));
     return (
       <Fragment>
         <ModalWindow open={modalMode} close={this.showTaskModal}>
@@ -33,16 +34,27 @@ class Task extends Component {
                   name="about"
                   multiline
                   defaultValue={about}
-                  rows="10"
+                  rows="7"
                   margin="normal"
                   variant="outlined"
+                  className="textfield"
+                />
+                <TextField
+                  label="Time (hours)"
+                  name="time"
+                  defaultValue={time || 1}
+                  margin="normal"
+                  variant="outlined"
+                  type="number"
+                  required
                   className="textfield"
                 />
                 <p>Status:</p>
                 <Select 
                   name="state"
-                  placeholder={state}
-                  options={columns.map(column => ({ value: column, label: column }))}
+                  defaultValue={selectOptions[selectOptions.findIndex(x => x.value == state)]}
+                  options={selectOptions}
+                  required
                 />
                 <div className="buttons">
                   <Button variant="contained" color="secondary" size="small" onClick={this.removeTask}>
@@ -77,6 +89,7 @@ class Task extends Component {
     const { company, task, authToken, project, sprint } = this.props;
     let data = new FormData(event.target);
     this.props.updateTask(task.id, company.id, project.id, data, authToken, sprint.id);
+    this.showTaskModal();
   }
 
   showTaskModal = () => {

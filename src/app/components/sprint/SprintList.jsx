@@ -60,7 +60,7 @@ class SprintList extends Component {
             label="Deadline"
             type="text"
             name="deadline"
-            value={`${deadline.getDate()}.${deadline.getMonth()}.${deadline.getFullYear()}`}
+            value={`${deadline.getDate()}.${deadline.getMonth() + 1}.${deadline.getFullYear()}`}
             readOnly
           />
           <Button variant="contained" color="primary" className="buttonSpr2" type="submit">

@@ -73,6 +73,10 @@ class Task extends Component {
         <div className="task" onClick={this.showTaskModal}> 
           <h4>{name}</h4>
           <p>{about}</p>
+          <div className="executor">
+            <span>EXE</span>
+            <span>{time}h</span>
+          </div>
         </div>
       </Fragment>
     );

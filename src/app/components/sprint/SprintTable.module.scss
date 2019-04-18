@@ -93,9 +93,20 @@
       margin: 7px 0;
       border: 1px solid #57b846;
       cursor: pointer;
+      position: relative;
 
       p {
         padding: 10px;
+        font-size: 12px;
+        max-height: 200px;
+        overflow: hidden;
+      }
+
+      .executor {
+        padding: 10px 10px 0 10px;
+        border-top: 1px solid #57b846;
+        display: flex;
+        justify-content: space-between;
       }
     }
 

@@ -1,5 +1,8 @@
+import { url } from "../../fixtures/fixtures.js";
+import { handleError } from "./handleError.js";
+
 export const loadCompanies = (userId, auth_token) => dispatch => {
-  fetch(`http://0.0.0.0:3000/roles/companies_list/${userId}`, {
+  fetch(`${url}roles/companies_list/${userId}`, {
     headers: {
       "Authorization": auth_token
     }
@@ -9,6 +12,6 @@ export const loadCompanies = (userId, auth_token) => dispatch => {
         if (response.ok)
           dispatch({ type: 'GET_CS', data: data });
         else
-          alert(JSON.stringify(data));
+          handleError(response, data, dispatch);
       }));
 };

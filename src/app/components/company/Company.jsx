@@ -9,6 +9,7 @@ import About from "./AboutCompany.jsx";
 import EditCompany from "./EditCompany.jsx";
 import Projects from "./Projects.jsx";
 import { removeCompany } from "../../actions/removeCompany.js";
+import { wrongToken } from "../../actions/wrongToken.js";
 import "./Company.module.scss";
 
 const ABOUT = "About";
@@ -33,6 +34,7 @@ class Company extends Component {
                 <div className="title">
                   <h2><span>Company: </span>{company && company.name}</h2>
                   <div>
+                    {/* <button onClick={this.props.wrongToken}>wrong</button> */}
                     <Button 
                       variant={page === PROJECTS ? "contained" : "outlined"}
                       color="primary"
@@ -76,7 +78,7 @@ class Company extends Component {
     else
       return (
         <div >
-          <h2>There are no companies yet. You can add your company. Click 'Create company' in menu.</h2>
+          <h2>There are no companies yet. You can add your company. Click Create Company in menu.</h2>
         </div>
       );
   }
@@ -105,10 +107,10 @@ class Company extends Component {
   setPage = (page) => {
     this.setState({
       page: page
-    })
+    });
   }
 }
 
 export default connect(state => ({
   authToken: state.user.auth_token
-}), {removeCompany})(Company);
+}), {removeCompany, wrongToken})(Company);

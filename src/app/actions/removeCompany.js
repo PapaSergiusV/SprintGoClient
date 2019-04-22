@@ -1,5 +1,8 @@
+import { url } from "../../fixtures/fixtures.js";
+import { handleError } from "./handleError.js";
+
 export const removeCompany = (id, auth_token) => dispatch => {
-  fetch(`http://0.0.0.0:3000/companies/${id}`, {
+  fetch(`${url}${id}`, {
     method: "DELETE",
     headers: {
       "Authorization": auth_token
@@ -7,6 +10,9 @@ export const removeCompany = (id, auth_token) => dispatch => {
   })
     .then(response => response.json()
       .then(data => {
-        response.ok && dispatch({ type: 'DEL_C', data, id });
+        if (response.ok)
+          dispatch({ type: 'DEL_C', data, id });
+        else
+          handleError(response, data, dispatch);
       }));
 };

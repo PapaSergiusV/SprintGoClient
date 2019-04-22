@@ -5,7 +5,8 @@
   "main": "index.jsx",
   "scripts": {
     "dev": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "lint": "eslint ./src/app --ext .jsx,.js"
   },
   "author": "S.Ponomarev",
   "license": "ISC",
@@ -13,10 +14,13 @@
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "react": "^16.4.2",
+    "react-c3js": "^0.1.20",
+    "react-calendar": "^2.18.1",
     "react-dom": "^16.4.2",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-select": "^2.4.2",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },
@@ -25,8 +29,13 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "css-loader": "^1.0.1",
+    "eslint": "^5.9.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.4",

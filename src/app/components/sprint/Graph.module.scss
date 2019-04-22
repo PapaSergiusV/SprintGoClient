@@ -1,0 +1,33 @@
+.graph-modal {
+  background: white;
+  height: 90vh;
+  width: 80vw;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px #333;
+  padding: 10px 0;
+  position: relative;
+
+  h4 {
+    background: #57b846;
+    color: #ffffff;
+    margin-bottom: 5px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .content {
+    padding: 0 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+  }
+
+  .buttons {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}

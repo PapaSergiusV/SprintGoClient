@@ -57,7 +57,7 @@ class CreateCompany extends Component {
       about: about,
       address: this.address.current.value,
       phone: this.phone.current.value
-    }
+    };
 
     this.props.addCompany(this.props.userId, this.props.auth_token, company);
     this.closeForm();

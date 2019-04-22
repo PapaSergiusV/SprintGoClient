@@ -1,4 +1,4 @@
 export const chooseProject = (project) => dispatch => {
-  const data = {id: project.id, name: project.name};
+  const data = {...project};
   dispatch({ type: 'CHOOSE_PROJECT', data });
 };

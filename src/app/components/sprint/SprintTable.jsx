@@ -11,6 +11,7 @@ import { loadSprint } from "../../actions/loadSprint.js";
 import { addTask } from "../../actions/addTask.js";
 import { columns } from "../../../shared/const.js";
 import { railsToJsTime, getHours, getDays } from "../../../libs/convertTime.js";
+import { loadUsers } from "../../actions/loadUsers.js";
 import "./SprintTable.module.scss";
 
 class SprintTable extends Component {
@@ -92,6 +93,7 @@ class SprintTable extends Component {
 
   componentDidMount = () => {
     this.loadSprint();
+    this.props.loadUsers(this.props.authToken);
   }
 
   componentDidUpdate = (prevProps) => {
@@ -134,4 +136,4 @@ export default connect(state => ({
   actCompany: state.actCompany,
   actSprint: state.actSprint,
   tasks: state.tasks
-}), { loadSprint, addTask })(SprintTable);
+}), { loadSprint, addTask, loadUsers })(SprintTable);

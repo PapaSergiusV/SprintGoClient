@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Select from "react-select";
 import Button from "@material-ui/core/Button";
+import Avatar from "@material-ui/core/Avatar";
 import Save from "@material-ui/icons/Save";
 import DeleteForever from "@material-ui/icons/DeleteForever";
 import TextField from "@material-ui/core/TextField";
@@ -14,13 +15,18 @@ import { updateTask } from "../../actions/updateTask.js";
 
 class Task extends Component {
   state = {
-    modalMode: false
+    modalMode: false,
+    users: []
   }
 
   render() {
-    const { name, about, state, id, time } = this.props.task;
+    const { name, about, state, id, time, user } = this.props.task;
     const { modalMode } = this.state;
+    const workers = this.props.project.project_roles.map(pRole => ({
+      label: pRole.role.user.email, value: pRole.role.user.id
+    }));
     const selectOptions = columns.map(column => ({ value: column, label: column }));
+    const avatar = this.createAvatar();
     return (
       <Fragment>
         <ModalWindow open={modalMode} close={this.showTaskModal}>
@@ -56,6 +62,13 @@ class Task extends Component {
                   options={selectOptions}
                   required
                 />
+                <p>Executor:</p>
+                <Select 
+                  name="user_id"
+                  defaultValue={workers[user ? workers.findIndex(x => x.value == user.id) : 0]}
+                  options={workers}
+                  required
+                />
                 <div className="buttons">
                   <Button variant="contained" color="secondary" size="small" onClick={this.removeTask}>
                     <DeleteForever />
@@ -74,12 +87,28 @@ class Task extends Component {
           <h4>{name}</h4>
           <p>{about}</p>
           <div className="executor">
-            <span>EXE</span>
+            <span>
+              {
+                avatar && <Avatar className="avatar">{avatar}</Avatar>
+              }
+            </span>
             <span>{time}h</span>
           </div>
         </div>
       </Fragment>
     );
+  }
+
+  createAvatar = () => {
+    const { users } = this.props;
+    const { user } = this.props.task;
+    if (user && users[0]) {
+      let index = users.findIndex(x => x.id === user.id);
+      let first = users[index].first_name ? users[index].first_name[0] : "";
+      let second = users[index].last_name ? users[index].last_name[0] : "";
+      return first + second;
+    }
+    return null;
   }
 
   removeTask = () => {
@@ -105,5 +134,6 @@ export default connect(state => ({
   authToken: state.user.auth_token,
   project: state.actProject,
   company: state.actCompany,
-  sprint: state.actSprint
+  sprint: state.actSprint,
+  users: state.users
 }), { removeTask, updateTask })(Task);

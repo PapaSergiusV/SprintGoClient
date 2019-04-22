@@ -95,6 +95,13 @@
       cursor: pointer;
       position: relative;
 
+      .avatar {
+        height: 20px;
+        width: 20px;
+        font-size: 12px;
+        background-color: #333;
+      }
+
       p {
         padding: 10px;
         font-size: 12px;

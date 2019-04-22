@@ -1,14 +1,7 @@
 @import "../../../shared/variables";
 
 .head1 {
-    margin-bottom: 10px;
-    
-}
-
-.head3 {
-  margin-top: 10px;
-  margin-bottom: 9px;
-  margin-top: 35px;
+  margin-bottom: 10px;
 }
 
 .paper1 {
@@ -23,12 +16,35 @@
   }
 }
 
-.form1 {
-  
-  .buttonSpr2 {
-    width: 50px;
-    height: 53px;
-    margin-left: 5px;
+.form {
+
+  &-area {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .input {
+      width: 100%;
+    }
+
+    .react-calendar {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    p {
+      text-align: left;
+      width: 100%;
+      margin: 5px 0;
+    }
   }
 }
 
+.buttonSpr2 {
+  width: 50px;
+  height: 53px;
+
+  span {
+    color: white;
+  }
+}

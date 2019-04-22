@@ -1,4 +1,4 @@
 export const chooseCompany = (company) => dispatch => {
-  const data = {id: company.id, name: company.name};
+  const data = {...company};
   dispatch({ type: 'CHOOSE_COMPANY', data });
 };

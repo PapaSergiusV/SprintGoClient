@@ -125,17 +125,24 @@
             }
           }
         }
+
+        .sign-toggle {
+          margin-top: 20px;
+          text-align: center;
+          text-decoration: underline;
+          cursor: pointer;
+        }
       
-         .sprintgo {
-           display: -webkit-box;
-           display: -webkit-flex;
-           display: -moz-box;
+        .sprintgo {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
           display: -ms-flexbox;
           display: flex;
           flex-direction: column;
           -ms-align-items: center;
           align-items: center;
-          padding-top: 170px;
+          padding-top: 20px;
           padding-bottom: 40px;
       
           .txt1 {

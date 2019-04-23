@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import Select from "react-select";
 
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
@@ -24,6 +25,9 @@ class SprintTable extends Component {
     const { actSprint, tasks } = this.props;
     const { addTaskMode, graphMode } = this.state;
     const timeLeft = this.getLeftTime();
+    const workers = this.props.actProject.project_roles.map(pRole => ({
+      label: pRole.role.user.email, value: pRole.role.user.id
+    }));
     return (
       <Fragment>
         <ModalWindow open={addTaskMode} close={this.showHideAddTaskModal}>
@@ -44,6 +48,12 @@ class SprintTable extends Component {
                       rows="7"
                     />
                   </div>
+                  <p>Executor:</p>
+                  <Select 
+                    name="user_id"
+                    options={workers}
+                    required
+                  />
                   <Button type="submit" variant="outlined" color="primary" className="button">
                     Add new task
                   </Button>
